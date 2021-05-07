@@ -1,9 +1,3 @@
-/*
-* project: PPPOE
-* filename: Config.java
-* src: src/config/Config.java
-* description: 配置文件的读取和应用变量的配置
-* */
 package config;
 
 import java.util.Properties;
@@ -11,9 +5,9 @@ import java.io.*;
 import java.util.Scanner;
 
 /*
-* description: 需要实现的接口定义
-* getName: 返回真实用户名
-* getPassWord: 返回密码
+* description: Functions
+* getName: return real user name
+* getPassWord: return password
 * */
 interface method{
     void chooseRules();
@@ -24,16 +18,11 @@ interface method{
 }
 
 public class Config implements method{
-
-    /*
-     * description: 配置和读取用户基本信息、应用基本信息
-     * load-from: setting.properties
-     * */
-    private static final Scanner keyIn = new Scanner(System.in);
-    public static final Properties props = new Properties();
-    public static String username;
-    public static String password;
-    private static String rules;
+    Scanner keyIn = new Scanner(System.in);
+    public Properties props = new Properties();
+    public String username;
+    public String password;
+    private String rules;
 
     @Override
     public String getName() { return username + rules;}

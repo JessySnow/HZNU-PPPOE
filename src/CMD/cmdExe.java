@@ -20,9 +20,4 @@ public class cmdExe {
         while ((Line = BR.readLine()) != null)  CMD_RETURN.append(Line).append("\n");
         return CMD_RETURN.toString();
     }
-
-    public static void main(String[] args) throws Exception {
-        String ret = cmdExe.executeCommand("rasdial PPPOE 2019212212237@ctc 12345");
-        System.out.println(ret);
-    }
 }
