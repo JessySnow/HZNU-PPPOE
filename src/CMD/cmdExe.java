@@ -16,7 +16,7 @@ public class cmdExe {
         //Get the output from CMD and feed it to this processor as input stream
         String Line;
         StringBuilder CMD_RETURN = new StringBuilder();
-        BufferedReader BR = new BufferedReader(new InputStreamReader(Windows_CMD.getInputStream(), StandardCharsets.UTF_8));
+        BufferedReader BR = new BufferedReader(new InputStreamReader(Windows_CMD.getInputStream(), "GB2312"));
         while ((Line = BR.readLine()) != null)  CMD_RETURN.append(Line).append("\n");
         return CMD_RETURN.toString();
     }
