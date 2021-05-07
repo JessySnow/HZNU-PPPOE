@@ -2,18 +2,27 @@ package CMD;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class cmdExe {
-    public String executeCommand(String command) throws Exception{
-        //执行从主函数Dial传入的cmd命令
-        Process cmdP = Runtime.getRuntime().exec("cmd /c " + command);
-        System.out.println("......");
+    /*
+    * function: Open a new processor to execute the command from Dial
+    * command: Command(String) from Dial
+    * */
+    public static String executeCommand(String command) throws Exception{
+        Process Windows_CMD = Runtime.getRuntime().exec("cmd /c " + command);
+        System.out.println("Loaded Windows_CMD......");
 
-        //将cmd的执行结果返回主函数
-        StringBuilder sbCmd = new StringBuilder();
-        BufferedReader br = new BufferedReader(new InputStreamReader(cmdP.getInputStream(), "GB2312"));
-        String line;
-        while ((line = br.readLine()) != null)  sbCmd.append((line + "\n"));
-        return sbCmd.toString();
+        //Get the output from CMD and feed it to this processor as input stream
+        String Line;
+        StringBuilder CMD_RETURN = new StringBuilder();
+        BufferedReader BR = new BufferedReader(new InputStreamReader(Windows_CMD.getInputStream(), StandardCharsets.UTF_8));
+        while ((Line = BR.readLine()) != null)  CMD_RETURN.append(Line).append("\n");
+        return CMD_RETURN.toString();
+    }
+
+    public static void main(String[] args) throws Exception {
+        String ret = cmdExe.executeCommand("rasdial PPPOE 2019212212237@ctc 12345");
+        System.out.println(ret);
     }
 }
