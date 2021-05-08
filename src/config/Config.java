@@ -20,19 +20,19 @@ public class Config{
         props.load(propsIn);
         propsIn.close();
     }
-
     //Write Properties
     public static void writeProps() throws Exception{
         FileOutputStream propsOut = new FileOutputStream(filePath);
         props.store(propsOut,"Init or Change");
+        propsOut.close();
     }
 
     //Set UserName
     public static void setUserName() {props.setProperty("UserName", UserName);}
     //Set PassWord
-    public static void setPassWord() {props.getProperty("PassWord", PassWord);}
+    public static void setPassWord() {props.setProperty("PassWord", PassWord);}
     //Set Configured
-    public static void setConfiged() {props.getProperty("Configured", Configed);}
+    public static void setConfiged() {props.setProperty("Configured", Configed);}
     //Return UserName
     public static String returnUserName(){return props.getProperty("UserName");}
     //Return PassWord
@@ -55,11 +55,8 @@ public class Config{
         loadProps();
         setPassWord();
         setUserName();
+        Configed = "true";
+        setConfiged();
         writeProps();
-    }
-
-    //Test
-    public static void main(String[] args) throws Exception{
-        InitDial();
     }
 }
