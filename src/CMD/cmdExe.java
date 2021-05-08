@@ -8,10 +8,11 @@ public class cmdExe {
     * function: Open a new processor to execute the command from Dial
     * command: Command(String) from Dial
     * */
-    public static boolean executeCommand(String command, String UserName, String PassWord) throws Exception{
+    public static boolean executeCommand(String UserName, String PassWord) throws Exception{
+        String command = "rasdial PPPOE";
         String Command = command + " " + UserName + " " + PassWord;
         Process Windows_CMD = Runtime.getRuntime().exec("cmd /c " + Command);
-        System.out.println("# Dialling ......");
+        System.out.println("## Dialling ...... ## \n\n");
 
         //Get the output from CMD and feed it to this processor as input stream
         String Line;

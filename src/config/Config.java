@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Config{
     //Basic variable
     private static String UserName, PassWord, Configed;
-    private static Scanner keyIn = new Scanner(System.in);
+    private static final Scanner keyIn = new Scanner(System.in);
 
     //Properties
     private static final String filePath = "src\\config\\config.properties";
@@ -38,13 +38,7 @@ public class Config{
     //Return PassWord
     public static String returnPassWord(){return props.getProperty("PassWord");}
     //Return Configed and Set Configed from "false" to "true"
-    public static boolean returnConfiged(){
-        if(props.getProperty("Configured").equals("true"))  return true;
-        else{
-            props.setProperty("Configured", "true");
-            return false;
-        }
-    }
+    public static boolean returnConfiged(){ return props.getProperty("Configured").equals("true"); }
 
     //Show config Interface and Init Dial
     public static void InitDial() throws Exception{
@@ -52,11 +46,9 @@ public class Config{
         System.out.println("分行输入学号的密码");
         UserName = keyIn.nextLine();
         PassWord =  keyIn.nextLine();
-        loadProps();
+        Configed = "true";
         setPassWord();
         setUserName();
-        Configed = "true";
         setConfiged();
-        writeProps();
     }
 }
