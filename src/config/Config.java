@@ -10,21 +10,17 @@ public class Config{
     private static final Scanner keyIn = new Scanner(System.in);
 
     //Properties
-    private static final String filePath = "src\\config\\config.properties";
+    private static final String filePath = "config.properties";
     static Properties props = new Properties();
 
-
+    //Write Properties
+    public static void writeProps() throws Exception{ ; }
     //Load Properties
     public static void loadProps() throws Exception{
-        FileInputStream propsIn = new FileInputStream(filePath);
+        InputStream propsIn = Config.class.getResourceAsStream(filePath);
         props.load(propsIn);
+        assert propsIn != null;
         propsIn.close();
-    }
-    //Write Properties
-    public static void writeProps() throws Exception{
-        FileOutputStream propsOut = new FileOutputStream(filePath);
-        props.store(propsOut,"Init or Change");
-        propsOut.close();
     }
 
     //Set UserName
@@ -41,14 +37,31 @@ public class Config{
     public static boolean returnConfiged(){ return props.getProperty("Configured").equals("true"); }
 
     //Show config Interface and Init Dial
-    public static void InitDial() throws Exception{
+    public static void InitDial(){
         System.out.println("######## Init #########");
-        System.out.println("分行输入学号的密码");
+        System.out.println("# 分行输入学号的密码");
         UserName = keyIn.nextLine();
         PassWord =  keyIn.nextLine();
+        System.out.println("# 输入运营商");
+        System.out.println("# 1.中国电信");
+        System.out.println("# 2.中国移动\n");
         Configed = "true";
+
+        int ISP = keyIn.nextInt();
+        if(ISP == 1)    UserName += props.getProperty("CT");
+        else if(ISP == 2)   UserName += props.getProperty("CM");
+
         setPassWord();
         setUserName();
         setConfiged();
+    }
+
+    public static void main(String[] args) throws Exception{
+        loadProps();
+        System.out.println(props);
+        UserName = "dsfa";
+        setUserName();
+        System.out.println(props.getProperty("UserName"));
+        writeProps();
     }
 }
