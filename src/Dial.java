@@ -25,7 +25,7 @@ public class Dial {
                     System.out.println("密码有误,重新输入");
                     UserName = keyIn.nextLine();
                 }else{
-                    System.out.println("重连次数过多,请重新输入账号和密码.");
+                    System.out.println("重连次数过多,重新输入账号和密码.");
                     UserName = keyIn.nextLine();
                     PassWord = keyIn.nextLine();
                     Config.setUserName();
