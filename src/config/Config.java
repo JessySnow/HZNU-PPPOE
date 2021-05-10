@@ -1,5 +1,6 @@
 package config;
 
+import java.net.URL;
 import java.util.Properties;
 import java.io.*;
 import java.util.Scanner;
@@ -14,12 +15,11 @@ public class Config{
     static Properties props = new Properties();
 
     //Write Properties
-    public static void writeProps() throws Exception{ ; }
+    public static void writeProps() throws Exception{;}
     //Load Properties
     public static void loadProps() throws Exception{
-        InputStream propsIn = Config.class.getResourceAsStream(filePath);
+        InputStream propsIn = Config.class.getClassLoader().getResourceAsStream(filePath);
         props.load(propsIn);
-        assert propsIn != null;
         propsIn.close();
     }
 
@@ -58,10 +58,7 @@ public class Config{
 
     public static void main(String[] args) throws Exception{
         loadProps();
-        System.out.println(props);
-        UserName = "dsfa";
-        setUserName();
-        System.out.println(props.getProperty("UserName"));
         writeProps();
     }
+
 }

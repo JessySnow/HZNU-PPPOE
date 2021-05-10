@@ -1,5 +1,5 @@
 import config.Config;
-import CMD.cmdExe;
+import cmd.cmdExe;
 
 import java.util.Scanner;
 
