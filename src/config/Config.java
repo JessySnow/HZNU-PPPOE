@@ -1,9 +1,7 @@
 package config;
 
-import java.net.URL;
-import java.util.Properties;
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Config{
     //Basic variable
@@ -18,7 +16,7 @@ public class Config{
     public static void writeProps() throws Exception{;}
     //Load Properties
     public static void loadProps() throws Exception{
-        InputStream propsIn = Config.class.getClassLoader().getResourceAsStream(filePath);
+        InputStream propsIn = Config.class.getResourceAsStream(filePath);
         props.load(propsIn);
         propsIn.close();
     }
@@ -57,8 +55,7 @@ public class Config{
     }
 
     public static void main(String[] args) throws Exception{
-        loadProps();
-        writeProps();
+
     }
 
 }
