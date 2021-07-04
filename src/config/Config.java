@@ -12,7 +12,7 @@ public class Config{
     private static final String userdir = System.getProperty("user.dir");
     private static final String filePath = userdir + "\\config.properties";
 //    private static final String filePath = "config.properties";
-    static Properties props = new Properties();
+    public static Properties props = new Properties();
 
     //Write Properties
     public static void writeProps() throws Exception{

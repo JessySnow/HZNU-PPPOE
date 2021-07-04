@@ -11,6 +11,8 @@ public class Dial {
         boolean DailStatus;
 
         Config.loadProps();
+        System.out.println(Config.props.toString());
+
 
         if(!Config.returnConfiged())    Config.InitDial();
         UserName = Config.returnUserName();
@@ -35,6 +37,7 @@ public class Dial {
             }
         }while (!DailStatus);
 
+        System.out.println(Config.props.toString());
         Config.writeProps();
     }
 }
