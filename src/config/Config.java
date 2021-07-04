@@ -9,17 +9,22 @@ public class Config{
     private static final Scanner keyIn = new Scanner(System.in);
 
     //Properties
-    private static final String filePath = "config.properties";
+    private static final String userdir = System.getProperty("user.dir");
+    private static final String filePath = userdir + "\\config.properties";
+//    private static final String filePath = "config.properties";
     static Properties props = new Properties();
 
-    
-
     //Write Properties
-    public static void writeProps() throws Exception{;}
+    public static void writeProps() throws Exception{
+        FileOutputStream propsOut =  new FileOutputStream(filePath);
+        props.store(propsOut, "NULL");
+        propsOut.close();
+    }
     //Load Properties
     public static void loadProps() throws Exception{
-        InputStream propsIn = Config.class.getResourceAsStream(filePath);
-        props.load(propsIn);
+//        InputStream propsIn = Config.class.getResourceAsStream(filePath);
+        FileInputStream propsIn = new FileInputStream(filePath);
+        props.load(new java.io.FileInputStream(filePath));
         propsIn.close();
     }
 
@@ -57,7 +62,10 @@ public class Config{
     }
 
     public static void main(String[] args) throws Exception{
-        
+        loadProps();
+        UserName = "UUUU";
+        setUserName();
+        writeProps();
+        System.out.println(props.toString());
     }
-
 }
