@@ -12,6 +12,8 @@ public class Config{
     private static final String filePath = "config.properties";
     static Properties props = new Properties();
 
+    
+
     //Write Properties
     public static void writeProps() throws Exception{;}
     //Load Properties
