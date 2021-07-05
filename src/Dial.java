@@ -1,6 +1,5 @@
 import config.Config;
 import cmd.cmdExe;
-
 import java.util.Scanner;
 
 public class Dial {
@@ -13,21 +12,26 @@ public class Dial {
         Config.loadProps();
         System.out.println(Config.props.toString());
 
-
+        //If it's the first run, go to the init processor.
         if(!Config.returnConfiged())    Config.InitDial();
+
+        /**
+         * Try to Dialing, if success in doing so, save the pros into props file in disk,
+         * otherwise keep trying to get a new password from console.
+         * */
         UserName = Config.returnUserName();
         PassWord = Config.returnPassWord();
-
         do {
             count ++;
+            //Get the result of dialing.
             DailStatus = cmdExe.executeCommand(UserName, PassWord);
             if(!DailStatus) {
                 count ++;
                 if(count <= 6){
                     System.out.println("密码有误,重新输入");
-                    UserName = keyIn.nextLine();
+                    PassWord = keyIn.nextLine();
                 }else{
-                    System.out.println("重连次数过多,重新输入账号和密码.");
+                    System.out.println("失败次数过多,重新输入账号和密码.");
                     UserName = keyIn.nextLine();
                     PassWord = keyIn.nextLine();
                     Config.setUserName();
@@ -37,7 +41,6 @@ public class Dial {
             }
         }while (!DailStatus);
 
-        System.out.println(Config.props.toString());
         Config.writeProps();
     }
 }

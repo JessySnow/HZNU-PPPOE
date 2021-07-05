@@ -11,7 +11,6 @@ public class Config{
     //Properties
     private static final String userdir = System.getProperty("user.dir");
     private static final String filePath = userdir + "\\config.properties";
-//    private static final String filePath = "config.properties";
     public static Properties props = new Properties();
 
     //Write Properties
@@ -22,7 +21,6 @@ public class Config{
     }
     //Load Properties
     public static void loadProps() throws Exception{
-//        InputStream propsIn = Config.class.getResourceAsStream(filePath);
         FileInputStream propsIn = new FileInputStream(filePath);
         props.load(new java.io.FileInputStream(filePath));
         propsIn.close();
@@ -59,13 +57,5 @@ public class Config{
         setPassWord();
         setUserName();
         setConfiged();
-    }
-
-    public static void main(String[] args) throws Exception{
-        loadProps();
-        UserName = "UUUU";
-        setUserName();
-        writeProps();
-        System.out.println(props.toString());
     }
 }
