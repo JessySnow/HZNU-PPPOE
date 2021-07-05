@@ -11,6 +11,7 @@ public class cmdExe {
 
         //Set the path of using phonebook
 //        Command += " /phonebook:" + userDir;
+//        System.out.println(Command);
 
         Process Windows_CMD = Runtime.getRuntime().exec("cmd /c " + Command);
         System.out.println("## Dialling ...... ## \n\n");

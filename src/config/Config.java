@@ -1,4 +1,5 @@
 package config;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.util.Scanner;
@@ -74,5 +75,18 @@ public class Config{
         setPassWord();
         setUserName();
         setConfiged();
+
+        //Move pbk to C
+        String windowsUser = System.getProperty("user.name");
+        String targetPath = "C:\\Users\\"+ windowsUser + "\\AppData\\Roaming\\Microsoft\\Network\\Connections\\Pbk\\rasphone.pbk";
+        String sourcePath = System.getProperty("user.dir") + "\\rasphone.pbk";
+        File source = new File(sourcePath);
+        File target = new File(targetPath);
+
+        try{
+            source.renameTo(target);
+        }catch (Exception e){
+            System.out.println("配置文件初始化失败");
+        }
     }
 }
