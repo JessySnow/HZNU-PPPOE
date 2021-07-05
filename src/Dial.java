@@ -1,5 +1,6 @@
 import config.Config;
 import cmd.cmdExe;
+
 import java.util.Scanner;
 
 public class Dial {
@@ -27,10 +28,10 @@ public class Dial {
             if(!DailStatus) {
                 count ++;
                 if(count <= 6){
-                    System.out.println("密码有误,重新输入");
+                    System.out.println("拨号认证失败,请重新输入密码");
                     PassWord = keyIn.nextLine();
                 }else{
-                    System.out.println("失败次数过多,重新输入账号和密码.");
+                    System.out.println("认知失败次数过多,重新输入账号和密码.");
                     UserName = keyIn.nextLine();
                     PassWord = keyIn.nextLine();
                     Config.setUserName();

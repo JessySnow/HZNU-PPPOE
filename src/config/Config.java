@@ -1,7 +1,8 @@
 package config;
-
-import java.io.*;
-import java.util.*;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.util.Scanner;
+import java.util.Properties;
 
 public class Config{
     //Basic variable
