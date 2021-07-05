@@ -20,10 +20,17 @@ public class Config{
         propsOut.close();
     }
     //Load Properties
-    public static void loadProps() throws Exception{
-        FileInputStream propsIn = new FileInputStream(filePath);
-        props.load(new java.io.FileInputStream(filePath));
-        propsIn.close();
+    public static void loadProps(){
+        try{
+            FileInputStream propsIn = new FileInputStream(filePath);
+            props.load(new java.io.FileInputStream(filePath));
+            propsIn.close();
+        }catch (Exception e){
+            System.out.println("### 配置文件丢失或打开错误，请检查配置文件是否位于当前的运行目录,或配置文件的读写权限\n\n");
+            System.out.println("### 输入回车退出");
+            String _ = keyIn.nextLine();
+            System.exit(1);
+        }
     }
 
     //Set UserName
