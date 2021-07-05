@@ -4,10 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class cmdExe {
-    /*
-    * function: Open a new processor to execute the command from Dial
-    * command: Command(String) from Dial
-    * */
     public static boolean executeCommand(String UserName, String PassWord) throws Exception{
         String userDir = System.getProperty("user.dir") + "\\rasphone.pbk";
         String command = "rasdial PPPOE";

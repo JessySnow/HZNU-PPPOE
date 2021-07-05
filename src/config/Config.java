@@ -5,16 +5,13 @@ import java.util.Scanner;
 import java.util.Properties;
 
 public class Config{
-    //Basic variable
     private static String UserName, PassWord, Configed;
     private static final Scanner keyIn = new Scanner(System.in);
 
-    //Properties
     private static final String userdir = System.getProperty("user.dir");
     private static final String filePath = userdir + "\\config.properties";
     public static Properties props = new Properties();
 
-    //Write Properties
     public static void writeProps() throws Exception{
         FileOutputStream propsOut =  new FileOutputStream(filePath);
         props.store(propsOut, "NULL");
@@ -35,17 +32,29 @@ public class Config{
     }
 
     //Set UserName
-    public static void setUserName() {props.setProperty("UserName", UserName);}
+    public static void setUserName(){
+        props.setProperty("UserName", UserName);
+    }
     //Set PassWord
-    public static void setPassWord() {props.setProperty("PassWord", PassWord);}
+    public static void setPassWord(){
+        props.setProperty("PassWord", PassWord);
+    }
     //Set Configured
-    public static void setConfiged() {props.setProperty("Configured", Configed);}
+    public static void setConfiged(){
+        props.setProperty("Configured", Configed);
+    }
     //Return UserName
-    public static String returnUserName(){return props.getProperty("UserName");}
+    public static String returnUserName(){
+        return props.getProperty("UserName");
+    }
     //Return PassWord
-    public static String returnPassWord(){return props.getProperty("PassWord");}
+    public static String returnPassWord(){
+        return props.getProperty("PassWord");
+    }
     //Return Configed and Set Configed from "false" to "true"
-    public static boolean returnConfiged(){ return props.getProperty("Configured").equals("true"); }
+    public static boolean returnConfiged(){
+        return props.getProperty("Configured").equals("true");
+    }
 
     //Show config Interface and Init Dial
     public static void InitDial(){
