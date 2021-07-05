@@ -10,7 +10,6 @@ public class Dial {
         boolean DailStatus;
 
         Config.loadProps();
-        System.out.println(Config.props.toString());
 
         //If it's the first run, go to the init processor.
         if(!Config.returnConfiged())    Config.InitDial();
