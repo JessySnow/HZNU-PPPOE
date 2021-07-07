@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dial.view.Interface">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="402.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="295.0">
+               <children>
+                  <TextArea layoutY="43.0" prefHeight="358.0" prefWidth="175.0" />
+                  <Label layoutX="64.0" layoutY="14.0" text="连接状态" />
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="318.0">
+               <children>
+                  <TextField layoutX="135.0" layoutY="79.0" prefHeight="26.0" prefWidth="201.0" />
+                  <TextField layoutX="134.0" layoutY="146.0" prefHeight="26.0" prefWidth="202.0" />
+                  <Label layoutX="57.0" layoutY="84.0" text="学号" />
+                  <Label layoutX="57.0" layoutY="151.0" text="密码" />
+                  <CheckBox layoutX="57.0" layoutY="219.0" mnemonicParsing="false" text="电信" />
+                  <CheckBox layoutX="173.0" layoutY="219.0" mnemonicParsing="false" text="移动" />
+                  <CheckBox layoutX="299.0" layoutY="219.0" mnemonicParsing="false" text="联通" />
+                  <Button layoutX="189.0" layoutY="318.0" mnemonicParsing="false" text="拨号" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
