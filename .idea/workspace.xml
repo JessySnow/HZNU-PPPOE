@@ -55,8 +55,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="JavaFXApplication" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -256,7 +256,7 @@
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1625666744073" duration="7000" />
       <workItem from="1625667393627" duration="3227000" />
-      <workItem from="1625710528728" duration="4271000" />
+      <workItem from="1625710528728" duration="8609000" />
     </task>
     <servers />
   </component>
