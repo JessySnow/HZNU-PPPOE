@@ -1,12 +1,12 @@
 package dial.model;
 
-import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigFile {
-    private String userDir;
-    private String filePath;
-    private Properties props = new Properties();
+    protected User user;
+    protected String userDir;
+    protected String filePath;
+    protected Properties props;
 
     /**
      * default constructor
@@ -48,7 +48,7 @@ public class ConfigFile {
      * setPassWord: write a new password to the props object
      * getRules: get a rules of encoding password from props object
      * */
-    public void setUserName(String userName){}
-    public void setPassword(String password){}
-    public void getRules(int type){}
+    public void setUserName(){}
+    public void setPassword(){}
+    public void getRules(){}
 }

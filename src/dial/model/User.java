@@ -3,6 +3,8 @@ package dial.model;
 public class User {
     private String passWord;
     private String userName;
+    private int type;
+    private String rule;
 
     /**
      * default constructor
@@ -29,11 +31,27 @@ public class User {
         this.passWord = passWord;
     }
 
+    public void setRule(String rule) {
+        this.rule = rule;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public String getPassWord() {
         return passWord;
     }
 
     public String getUserName() {
         return userName;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getRule() {
+        return rule;
     }
 }
