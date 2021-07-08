@@ -6,7 +6,7 @@ public class Status {
     /**
      * default constructor
      * */
-    Status(){
+    public Status(){
         statusInfo = "发生了未知错误";
     }
 
