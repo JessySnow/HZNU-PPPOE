@@ -1,7 +1,5 @@
 package Dial.Model;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty; import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty; import javafx.beans.property.SimpleStringProperty; import javafx.beans.property.StringProperty; import javafx.beans.property.IntegerProperty;
 
 public class Error {
     private StringProperty errorInfo;
@@ -12,7 +10,23 @@ public class Error {
      */
     Error(int errorCode){
         this.errorCode = new SimpleIntegerProperty(errorCode);
-        switch (errorCode){
+        updateErrorInfo();
+    }
+
+    public int getErrorCode(){
+        return this.errorCode.get();
+    }
+
+    public String getErrorInfo(){
+        return this.errorInfo.get();
+    }
+
+    public void setErrorCode(int errorCode){
+        this.errorCode.set(errorCode);
+    }
+
+    public void updateErrorInfo(){
+        switch (this.errorCode.get()){
             case(678):
                 this.errorInfo = new SimpleStringProperty("错误678: 远程计算机无响应");
                 break;
@@ -28,13 +42,5 @@ public class Error {
             default:
                 this.errorInfo = new SimpleStringProperty("未知错误");
         }
-    }
-
-    public int getErrorCode(){
-        return this.errorCode.get();
-    }
-
-    public String getErrorInfo(){
-        return this.errorInfo.get();
     }
 }
