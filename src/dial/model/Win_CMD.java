@@ -22,7 +22,7 @@ public class Win_CMD {
 
     /**
      * try to connect, and get the info from console
-     * call windows interface rasdial
+     * call windows interface - rasdial
      * */
     public void Connect(){
         try {
@@ -70,4 +70,9 @@ public class Win_CMD {
     public void setCMD(String CMD) {
         this.CMD = CMD;
     }
+
+    /**
+     * Test
+     * */
+    public static void main(String[] args) {}
 }
