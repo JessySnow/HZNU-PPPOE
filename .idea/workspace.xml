@@ -56,6 +56,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -175,18 +176,15 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Dial.view.Main" />
       <module name="JavaFxApplication" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="Dial.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -241,6 +239,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -253,7 +256,7 @@
       <workItem from="1359379250712" duration="1302000" />
       <workItem from="1625666744073" duration="7000" />
       <workItem from="1625667393627" duration="3227000" />
-      <workItem from="1625710528728" duration="4035000" />
+      <workItem from="1625710528728" duration="4271000" />
     </task>
     <servers />
   </component>
