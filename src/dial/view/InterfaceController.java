@@ -99,8 +99,13 @@ public class InterfaceController {
         user.setPassWord(passWord.getText());
         user.setType(getType());
     }
-    private void setCMDInfo(){}
-    private void setConnectionInfo(){}
+    private void setCMDInfo(){
+        runCmd = new RunCmd(user);
+    }
+    private void setConnectionInfo(){
+        connection = new Connection();
+        connection.setStatus(runCmd.getStatus());
+    }
 
     /**
      * try to dial
@@ -109,8 +114,10 @@ public class InterfaceController {
     private void handleDial(){
         if(isFilled() && isSelected()){
             setUserInfo();
-            System.out.println(user.getUserName());
-            System.out.println(user.getPassWord());
+            setCMDInfo();
+            runCmd.runRasdial();
+            setConnectionInfo();
+            System.out.println(connection.getStatus().getStatusInfo());
         }
     }
 

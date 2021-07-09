@@ -1,8 +1,8 @@
 package dial.model;
 
 public class Win_CMD {
-    protected User user;
-    protected Status status;
+    protected User user = new User();
+    protected Status status = new Status();
     protected String CMD;
 
     /**

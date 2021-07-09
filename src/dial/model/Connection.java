@@ -1,9 +1,11 @@
 package dial.model;
 
 public class Connection {
-    private User user;
-    private Win_CMD cmd;
-    private Status status;
+    private User user = new User();
+    private Win_CMD cmd = new Win_CMD();
+    private Status status = new Status();
+
+    public Connection(){}
 
     public void setCmd(Win_CMD cmd) {
         this.cmd = cmd;
