@@ -1,14 +1,17 @@
 package dial.model;
 
 public class Win_CMD {
-    protected User user = new User();
-    protected Status status = new Status();
+    protected User user;
+    protected Status status;
     protected String CMD;
 
     /**
      * default constructor
      * */
-    Win_CMD(){}
+    Win_CMD(){
+        user = new User();
+        status = new Status();
+    }
 
     /**
      * @param user

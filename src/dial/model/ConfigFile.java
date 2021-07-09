@@ -10,8 +10,13 @@ public class ConfigFile {
 
     /**
      * default constructor
+     * call default constructor
+     * to generate all objects
      * */
-    public ConfigFile(){}
+    public ConfigFile(){
+        user = new User();
+        props = new Properties();
+    }
 
     public Properties getProps() {
         return props;

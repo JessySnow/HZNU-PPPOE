@@ -13,6 +13,8 @@ public class User {
     public User(){
         this.passWord = "000";
         this.userName = "000";
+        this.rule = "@ctc";
+        this.configured = "false";
     }
 
     /**
