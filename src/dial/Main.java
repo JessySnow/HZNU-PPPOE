@@ -1,5 +1,7 @@
 package dial;
 
+import dial.view.InterfaceController;
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -45,10 +47,19 @@ public class Main extends Application {
             Scene scene = new Scene(Interface);
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            /**
+             *  Give the controller to the Main so that
+             *  Main can get access of the controller on the pane
+             *  */
+            InterfaceController controller = loader.getController();
+            controller.setMain(this);
         }catch (IOException e){
             System.exit(1);
         }
     }
+
+
 
     /**
      * Returns the main stage.

@@ -1,12 +1,14 @@
 package dial.view;
 
+import dial.model.Connection;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
+import dial.model.Win_CMD;
+import dial.RunCmd;
 
 public class InterfaceController {
     @FXML
@@ -24,9 +26,10 @@ public class InterfaceController {
     @FXML
     private Button Login;
 
-
-
     private Main main;
+    private User user;
+    private RunCmd runCmd;
+    private Connection connection;
 
     /**
      * default empty constructor
@@ -42,8 +45,6 @@ public class InterfaceController {
         CMC.setToggleGroup(ISP);
         CTC.setToggleGroup(ISP);
         CUC.setToggleGroup(ISP);
-        userName.setText("Hello World");
-        passWord.setText("Hello World");
     }
 
     /**
@@ -65,9 +66,8 @@ public class InterfaceController {
     /**
      * show info of user in text_field and check_box if application is configured before
      *
-     * @param user
      * */
-    public void showUserInfo(User user){
+    private void showUserInfo(){
         if(!user.getUserName().equals("null") && !user.getPassWord().equals("null") && user.getType() != 3){
             this.userName.setText(user.getUserName());
             this.passWord.setText(user.getPassWord());
@@ -100,4 +100,10 @@ public class InterfaceController {
             user.setPassWord(passWord.getText());
         }
     }
+
+    /**
+     * try to dial
+     * */
+    @FXML
+    private void handleDial(){}
 }
