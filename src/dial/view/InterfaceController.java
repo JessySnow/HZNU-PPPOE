@@ -1,13 +1,10 @@
 package dial.view;
 
 import dial.model.Connection;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
-import dial.model.Win_CMD;
 import dial.RunCmd;
 
 public class InterfaceController {
@@ -36,29 +33,33 @@ public class InterfaceController {
      * */
     public InterfaceController(){}
 
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private  void initialize(){
-        CMC.setToggleGroup(ISP);
-        CTC.setToggleGroup(ISP);
-        CUC.setToggleGroup(ISP);
+    /* judge if all blank is filled */
+    private boolean isFilled(){
+        return (!userName.getText().trim().equals("") &&
+                !passWord.getText().trim().equals(""));
     }
-
-    /**
-     * if one of three RadioButton is selected
-     * return true
-     * else return false
-     *
-     * @return selected
-     * */
+    /* judge if any radius button is selected */
     private boolean isSelected(){
-        boolean selected = false;
-        return selected;
+        RadioButton selectedRadioButton = (RadioButton) ISP.getSelectedToggle();
+        return selectedRadioButton != null;
+    }
+    /* get user type from the radio button selected */
+    private int getType(){
+        RadioButton selectedRadioButton = (RadioButton) ISP.getSelectedToggle();
+        if(selectedRadioButton == CTC)  {
+            return 0;
+        }
+        else if (selectedRadioButton == CMC){
+            return 1;
+        }
+        else {
+            return 2;
+        }
     }
 
+    /**
+     * get main from Main.java
+     * */
     public void setMain(Main main){
         this.main = main;
     }
@@ -67,6 +68,7 @@ public class InterfaceController {
      * show info of user in text_field and check_box if application is configured before
      *
      * */
+    @FXML
     private void showUserInfo(){
         if(!user.getUserName().equals("null") && !user.getPassWord().equals("null") && user.getType() != 3){
             this.userName.setText(user.getUserName());
@@ -91,19 +93,40 @@ public class InterfaceController {
      * set user's info if user click the Login button
      * but not write the info to props util the dial is
      * success
-     *
-     * @param user
      * */
-    public void setUserInfo(User user){
-        if(isSelected() && !passWord.getText().trim().equals("" ) && !userName.getText().trim().equals(" ")){
-            user.setUserName(userName.getText());
-            user.setPassWord(passWord.getText());
-        }
+    private void setUserInfo(){
+        user.setUserName(userName.getText());
+        user.setPassWord(passWord.getText());
+        user.setType(getType());
     }
+    private void setCMDInfo(){}
+    private void setConnectionInfo(){}
 
     /**
      * try to dial
      * */
     @FXML
-    private void handleDial(){}
+    private void handleDial(){
+        if(isFilled() && isSelected()){
+            setUserInfo();
+            System.out.println(user.getUserName());
+            System.out.println(user.getPassWord());
+        }
+    }
+
+
+    /**
+     * Initializes the controller class and all object needed.
+     * This method is automatically called
+     * after the fxml file has been loaded
+     */
+    @FXML
+    private  void initialize(){
+        user = new User();
+        ISP = new ToggleGroup();
+        CMC.setToggleGroup(ISP);
+        CTC.setToggleGroup(ISP);
+        CUC.setToggleGroup(ISP);
+        handleDial();
+    }
 }

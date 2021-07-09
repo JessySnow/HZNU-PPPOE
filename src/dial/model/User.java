@@ -10,7 +10,7 @@ public class User {
     /**
      * default constructor
      * */
-    User(){
+    public User(){
         this.passWord = "000";
         this.userName = "000";
     }
@@ -19,7 +19,7 @@ public class User {
      * @param userName
      * @param passWord
      * */
-    User(String passWord, String userName){
+    public User(String passWord, String userName){
         this.passWord = passWord;
         this.userName = userName;
     }
