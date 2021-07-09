@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -20,8 +21,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+
+        /**
+         * set title of application
+         * set icon of application
+         * */
         this.primaryStage.setTitle("HZNU-Dial");
-        primaryStage.setResizable(false);
+        this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
+        this.primaryStage.setResizable(false);
         initInterface();
     }
 
