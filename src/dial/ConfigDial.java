@@ -45,6 +45,14 @@ public class ConfigDial extends ConfigFile{
         props.setProperty("PassWord", user.getPassWord());
     }
     @Override
+    public void setConfigured(){
+        props.setProperty("Configured", user.getConfigured());
+    }
+    @Override
+    public void setType(){
+        props.setProperty("type", String.valueOf(user.getType()));
+    }
+    @Override
     public void getRules(){
         switch (user.getType()){
             case(0):

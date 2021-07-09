@@ -5,6 +5,7 @@ public class User {
     private String userName;
     private int type;
     private String rule;
+    private String configured;
 
     /**
      * default constructor
@@ -39,6 +40,10 @@ public class User {
         this.type = type;
     }
 
+    public void setConfigured(String configured) {
+        this.configured = configured;
+    }
+
     public String getPassWord() {
         return passWord;
     }
@@ -53,5 +58,9 @@ public class User {
 
     public String getRule() {
         return rule;
+    }
+
+    public String getConfigured() {
+        return configured;
     }
 }

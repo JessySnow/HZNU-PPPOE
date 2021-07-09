@@ -46,9 +46,13 @@ public class ConfigFile {
     /**
      * setUserName: write a new username to the props object
      * setPassWord: write a new password to the props object
+     * setConfigured: Change value of configured from null to yes
+     * getType: write a new type(0 - 2) to the props object
      * getRules: get a rules of encoding password from props object
      * */
     public void setUserName(){}
     public void setPassword(){}
+    public void setConfigured(){}
+    public void setType(){}
     public void getRules(){}
 }
