@@ -1,7 +1,6 @@
 package dial;
 
 import java.io.IOException;
-import java.io.PrintStream;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("HZNU-Dial");
-
+        primaryStage.setResizable(false);
         initInterface();
     }
 
