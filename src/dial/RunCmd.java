@@ -17,6 +17,20 @@ public class RunCmd extends Win_CMD{
         /* test block */
         user.setRule("@ctc");
 
+        /* get rule by user type */
+        switch (user.getType()){
+            case (0):
+                user.setRule("@ctc");
+                break;
+            case (1):
+                user.setRule("@cmcc");
+                break;
+            case(2):
+                user.setRule("@cuc");
+                break;
+            default:
+                user.setRule("@xxx");
+        }
         CMD = (String.format("rasdial PPPOE %s%s %s", user.getUserName(), user.getRule(), user.getPassWord()));
     }
 

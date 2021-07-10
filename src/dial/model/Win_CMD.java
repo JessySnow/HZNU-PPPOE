@@ -18,6 +18,7 @@ public class Win_CMD {
      * */
     public Win_CMD(User user){
         this.user = user;
+        this.status = new Status();
     }
 
     public User getUser() {

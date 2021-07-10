@@ -117,7 +117,6 @@ public class InterfaceController {
             setCMDInfo();
             runCmd.runRasdial();
             setConnectionInfo();
-            System.out.println(connection.getStatus().getStatusInfo());
         }
     }
 
