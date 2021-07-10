@@ -26,12 +26,12 @@ public class InterfaceController {
     private RadioButton CUC;
 
     private SystemTray systemTray;
+    private TrayIcon trayIcon;
 
     private Main main;
     private User user;
     private RunCmd runCmd;
     private Connection connection;
-
 
 
     /**
@@ -41,7 +41,7 @@ public class InterfaceController {
         systemTray = SystemTray.getSystemTray();
         try{
             Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
-            TrayIcon trayIcon = new TrayIcon(notiImage, "Status");
+            trayIcon = new TrayIcon(notiImage, "Status");
             trayIcon.setImageAutoSize(true);
             systemTray.add(trayIcon);
             trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
@@ -140,6 +140,7 @@ public class InterfaceController {
             runCmd.runRasdial();
             setConnectionInfo();
             showAwtNotification();
+            systemTray.remove(trayIcon);
         }
     }
 
