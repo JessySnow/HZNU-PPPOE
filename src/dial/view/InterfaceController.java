@@ -6,6 +6,10 @@ import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
+import javafx.scene.control.TextField;
+
+import java.awt.*;
+import java.awt.TrayIcon.MessageType;
 
 public class InterfaceController {
     @FXML
@@ -20,13 +24,31 @@ public class InterfaceController {
     private RadioButton CTC;
     @FXML
     private RadioButton CUC;
-    @FXML
-    private Button Login;
+
+    private SystemTray systemTray;
 
     private Main main;
     private User user;
     private RunCmd runCmd;
     private Connection connection;
+
+
+
+    /**
+     * pop notification
+     * */
+    private void showAwtNotification(){
+        systemTray = SystemTray.getSystemTray();
+        try{
+            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
+            TrayIcon trayIcon = new TrayIcon(notiImage, "Status");
+            trayIcon.setImageAutoSize(true);
+            systemTray.add(trayIcon);
+            trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
+        }catch (AWTException e){
+            System.exit(-2);
+        }
+    }
 
     /**
      * default empty constructor
@@ -117,6 +139,7 @@ public class InterfaceController {
             setCMDInfo();
             runCmd.runRasdial();
             setConnectionInfo();
+            showAwtNotification();
         }
     }
 
