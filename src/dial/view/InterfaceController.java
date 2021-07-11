@@ -128,7 +128,7 @@ public class InterfaceController {
     private void setConnectionInfo(){
         connection = new Connection();
         connection.setStatus(runCmd.getStatus());
-        if(connection.getStatus().equals("认证成功,已连接")){
+        if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
             configDial.saveProps();
         }
     }
@@ -156,6 +156,8 @@ public class InterfaceController {
             runCmd.runRasdial();
             setConnectionInfo();
             showAwtNotification();
+            System.out.println(runCmd.getCMD());
+
             systemTray.remove(trayIcon);
         }
     }

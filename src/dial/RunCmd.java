@@ -14,9 +14,6 @@ public class RunCmd extends Win_CMD{
     public RunCmd(User user){
         super(user);
 
-        /* test block */
-        user.setRule("@ctc");
-
         /* get rule by user type */
         switch (user.getType()){
             case (0):
