@@ -3,7 +3,6 @@ package dial.model;
 import java.util.Properties;
 
 public class ConfigFile {
-    protected User user;
     protected String userDir;
     protected String filePath;
     protected Properties props;
@@ -14,35 +13,23 @@ public class ConfigFile {
      * to generate all objects
      * */
     public ConfigFile(){
-        user = new User();
         props = new Properties();
     }
 
-    public Properties getProps() {
-        return props;
+    public String getUserName(){
+        return props.getProperty("UserName");
     }
-
-    public String getFilePath() {
-        return filePath;
+    public String getPassWord(){
+        return props.getProperty("PassWord");
     }
-
-    public String getUserDir() {
-        return userDir;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public void setUserDir(String userDir) {
-        this.userDir = userDir;
+    public int getType(){
+        return Integer.parseInt(props.getProperty("type"));
     }
 
     /**
      * load properties file from disk to memory(ram)
      * */
     public void loadProps(){}
-
     /**
      * write the change from memory to disk
      * */
@@ -54,10 +41,13 @@ public class ConfigFile {
      * setConfigured: Change value of configured from null to yes
      * getType: write a new type(0 - 2) to the props object
      * getRules: get a rules of encoding password from props object
+     * config_An_user: load all properties from disk and set user object's properties by these properties
      * */
-    public void setUserName(){}
-    public void setPassword(){}
-    public void setConfigured(){}
-    public void setType(){}
-    public void getRules(){}
+    public void setUserName(User user){}
+    public void setPassword(User user){}
+    public void setConfigured(User user){}
+    public void setRule(User user){}
+    public void setType(User user){}
+    public void getRules(User user){}
+    public void config_An_User(User user){};
 }

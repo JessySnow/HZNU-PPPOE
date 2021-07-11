@@ -1,5 +1,6 @@
 package dial.view;
 
+import dial.ConfigDial;
 import dial.model.Connection;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -32,6 +33,7 @@ public class InterfaceController {
     private User user;
     private RunCmd runCmd;
     private Connection connection;
+    private ConfigDial configDial;
 
 
     /**
@@ -128,6 +130,17 @@ public class InterfaceController {
         connection = new Connection();
         connection.setStatus(runCmd.getStatus());
     }
+    private void setConfigDial(){
+        configDial = new ConfigDial();
+        configDial.loadProps();
+    }
+
+    /**
+     * get user's info from config file
+     */
+    private void loadUserInfo(){
+        this.user = configDial.getUser();
+    }
 
     /**
      * try to dial
@@ -158,5 +171,8 @@ public class InterfaceController {
         CTC.setToggleGroup(ISP);
         CUC.setToggleGroup(ISP);
         handleDial();
+        loadUserInfo();
+        setConfigDial();
+        showUserInfo();
     }
 }

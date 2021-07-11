@@ -1,19 +1,24 @@
 package dial;
 
 import dial.model.ConfigFile;
+import dial.model.User;
 
-import java.util.Properties;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ConfigDial extends ConfigFile{
-    ConfigDial(){
+
+    public ConfigDial(){
+        super();
         userDir = System.getProperty("user.dir");
         filePath = userDir + "\\config.properties";
-        props = new Properties();
     }
 
+    /**
+     * load properties from disk to memory(ram)
+     * write properties to disk to memory(ram)
+     */
     @Override
     public void loadProps(){
         try{
@@ -37,33 +42,42 @@ public class ConfigDial extends ConfigFile{
         }
     }
     @Override
-    public void setUserName(){
+    public void setUserName(User user){
         props.setProperty("UserName", user.getUserName());
     }
     @Override
-    public void setPassword(){
+    public void setPassword(User user){
         props.setProperty("PassWord", user.getPassWord());
     }
     @Override
-    public void setConfigured(){
+    public void setConfigured(User user){
         props.setProperty("Configured", user.getConfigured());
     }
     @Override
-    public void setType(){
+    public void setType(User user){
         props.setProperty("type", String.valueOf(user.getType()));
     }
     @Override
-    public void getRules(){
+    public void setRule(User user){
         switch (user.getType()){
-            case(0):
-                user.setRule(props.getProperty("CT"));
+            case (0):
+                user.setRule("@ctc");
                 break;
-            case(1):
-                user.setRule(props.getProperty("CM"));
+            case (1):
+                user.setRule("@cmcc");
                 break;
             case(2):
-                user.setRule(props.getProperty("CU"));
+                user.setRule("@cuc");
                 break;
+            default:
+                user.setRule("@xxx");
         }
+    }
+    @Override
+    public void config_An_User(User user){
+        setUserName(user);
+        setPassword(user);
+        setConfigured(user);
+        setType(user);
     }
 }
