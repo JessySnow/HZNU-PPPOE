@@ -90,7 +90,6 @@ public class InterfaceController {
 
     /**
      * show info of user in text_field and check_box if application is configured before
-     *
      * */
     @FXML
     private void showUserInfo(){
@@ -129,17 +128,21 @@ public class InterfaceController {
     private void setConnectionInfo(){
         connection = new Connection();
         connection.setStatus(runCmd.getStatus());
+        if(connection.getStatus().equals("认证成功,已连接")){
+            configDial.saveProps();
+        }
     }
-    private void setConfigDial(){
+    private void initConfig(){
         configDial = new ConfigDial();
         configDial.loadProps();
     }
-
     /**
      * get user's info from config file
      */
     private void loadUserInfo(){
-        this.user = configDial.getUser();
+        user.setUserName(configDial.getUserName());
+        user.setPassWord(configDial.getPassWord());
+        user.setType(configDial.getType());
     }
 
     /**
@@ -157,7 +160,6 @@ public class InterfaceController {
         }
     }
 
-
     /**
      * Initializes the controller class and all object needed.
      * This method is automatically called
@@ -170,9 +172,10 @@ public class InterfaceController {
         CMC.setToggleGroup(ISP);
         CTC.setToggleGroup(ISP);
         CUC.setToggleGroup(ISP);
+
+        initConfig();
         handleDial();
         loadUserInfo();
-        setConfigDial();
         showUserInfo();
     }
 }

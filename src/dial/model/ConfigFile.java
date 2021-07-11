@@ -10,7 +10,6 @@ public class ConfigFile {
     /**
      * default constructor
      * call default constructor
-     * to generate all objects
      * */
     public ConfigFile(){
         props = new Properties();
