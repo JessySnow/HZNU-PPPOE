@@ -169,7 +169,6 @@ public class InterfaceController {
         if(isFilled() && isSelected()){
             setUserInfo();
             setCMDInfo();
-//            runCmd.runRasdial();
             runRasdial_thread(runCmd);
 //            setConnectionInfo();
 //            showNotification_thread();

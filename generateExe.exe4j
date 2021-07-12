@@ -2,13 +2,10 @@
 <exe4j version="8.0" transformSequenceNumber="3">
   <directoryPresets config="D:/Language-Support/Java-SE-8" />
   <application name="Dial" distributionSourceDir="C:/Users/jessy/Desktop" />
-  <executable name="Dial" wrapperType="embed" executableMode="gui" />
+  <executable name="Dial" wrapperType="embed" executableMode="gui" singleInstance="true" />
   <java mainClass="dial.Main" preferredVM="client" minVersion="1.8" maxVersion="1.8">
     <searchSequence>
-      <registry />
-      <envVar name="JAVA_HOME" />
-      <envVar name="JDK_HOME" />
-      <directory location="D:/Language-Support/Java-SE-8/jre" />
+      <directory location="./jre" />
     </searchSequence>
     <classPath>
       <archive location="D:/Git-Repo/HZNU-PPPOE/out/artifacts/JavaFxApplication_jar/JavaFxApplication.jar" failOnError="false" />
