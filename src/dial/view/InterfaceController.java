@@ -32,7 +32,7 @@ public class InterfaceController {
     private Main main;
     private User user;
     private RunCmd runCmd;
-    private Connection connection;
+    public static Connection connection;
     private ConfigDial configDial;
 
 
@@ -50,6 +50,14 @@ public class InterfaceController {
         }catch (AWTException e){
             System.exit(-2);
         }
+    }
+
+    /**
+     * create a new thread to show notification
+     */
+    private void showNotification_thread(){
+        Thread notiThread = new notiThread();
+        notiThread.start();
     }
 
     /**
@@ -155,10 +163,8 @@ public class InterfaceController {
             setCMDInfo();
             runCmd.runRasdial();
             setConnectionInfo();
-            showAwtNotification();
-            System.out.println(runCmd.getCMD());
-
-            systemTray.remove(trayIcon);
+            showNotification_thread();
+//            showAwtNotification();
         }
     }
 
@@ -179,5 +185,27 @@ public class InterfaceController {
         handleDial();
         loadUserInfo();
         showUserInfo();
+    }
+}
+
+class notiThread extends Thread{
+    String notification = null;
+    private SystemTray systemTray;
+    private TrayIcon trayIcon;
+    @Override
+    public void run(){
+        this.notification = InterfaceController.connection.getStatus().getStatusInfo();
+        systemTray = SystemTray.getSystemTray();
+        try{
+            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
+            trayIcon = new TrayIcon(notiImage, "Status");
+            trayIcon.setImageAutoSize(true);
+            systemTray.add(trayIcon);
+            trayIcon.displayMessage("连接状态", notification, MessageType.INFO);
+        }catch (AWTException e){
+            System.exit(-2);
+        }finally {
+            systemTray.remove(trayIcon);
+        }
     }
 }

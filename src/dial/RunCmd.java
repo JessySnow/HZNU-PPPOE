@@ -49,12 +49,16 @@ public class RunCmd extends Win_CMD{
 
             /* init the status by the error coed from console */
             if (result.indexOf("Connected") > 0 || result.indexOf("已连接") > 0)    status.setStatusInfo("认证成功,已连接");
-            else if (result.indexOf("678") > 0)    status.setStatusInfo("无法连接到认证服务器");
-            else if (result.indexOf("691") > 0)    status.setStatusInfo("用户名或者密码错误,请检查");
-            else if (result.indexOf("619") > 0)    status.setStatusInfo("连接端口未打开,请检查网卡或入户网线接口");
-            else if (result.indexOf("718") > 0)    status.setStatusInfo("认证服务器响应超时,请稍后尝试重连");
-            else if (result.indexOf("623") > 0)    status.setStatusInfo("未找到当前拨号连接的号码本入口");
-            else status.setStatusInfo("拨号时发生未知错误_1");
+            else if (result.indexOf("678") > 0)    status.setStatusInfo("无法连接到认证服务器_678");
+            else if (result.indexOf("691") > 0)    status.setStatusInfo("用户名或者密码错误,请检查_691");
+            else if (result.indexOf("619") > 0)    status.setStatusInfo("连接端口未打开,请检查网卡或入户网线接口_619");
+            else if (result.indexOf("718") > 0)    status.setStatusInfo("认证服务器响应超时,请稍后尝试重连_718");
+            else if (result.indexOf("623") > 0)    status.setStatusInfo("未找到当前拨号连接的号码本入口_623");
+            else if (result.indexOf("651") > 0)    status.setStatusInfo("网卡报错检查当前的连接环境_651");
+            else {
+                status.setStatusInfo("拨号时发生未知错误_1");
+                System.out.println(result);
+            }
         }catch (Exception e){
             status.setStatusInfo("拨号时发生未知错误_0");
         }
