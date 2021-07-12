@@ -61,6 +61,14 @@ public class InterfaceController {
     }
 
     /**
+     * create a new thread to execute rasdial command in cmd
+     * @return
+     */
+    private void runRasdial_thread(RunCmd runCmd){
+        Thread cmdThread = new runShellThread(runCmd);
+        cmdThread.start();
+    }
+    /**
      * default empty constructor
      * */
     public InterfaceController(){}
@@ -161,9 +169,10 @@ public class InterfaceController {
         if(isFilled() && isSelected()){
             setUserInfo();
             setCMDInfo();
-            runCmd.runRasdial();
-            setConnectionInfo();
-            showNotification_thread();
+//            runCmd.runRasdial();
+            runRasdial_thread(runCmd);
+//            setConnectionInfo();
+//            showNotification_thread();
 //            showAwtNotification();
         }
     }
@@ -188,6 +197,10 @@ public class InterfaceController {
     }
 }
 
+/**
+ * create a noti_thread class extend thread to show
+ * notification from the connection status
+ */
 class notiThread extends Thread{
     String notification = null;
     private SystemTray systemTray;
@@ -207,5 +220,24 @@ class notiThread extends Thread{
         }finally {
             systemTray.remove(trayIcon);
         }
+    }
+}
+/**
+ * create a new thread to execute
+ * a rasdial command
+ */
+class runShellThread extends Thread{
+    private RunCmd runCmd;
+    public runShellThread(RunCmd runCmd){
+        this.runCmd = runCmd;
+    }
+
+    @Override
+    public void run() {
+        runCmd.runRasdial();
+    }
+
+    public RunCmd getRunCmd() {
+        return runCmd;
     }
 }
