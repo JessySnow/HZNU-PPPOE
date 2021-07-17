@@ -140,6 +140,12 @@ public class InterfaceController {
         if(isFilled() && isSelected()){
             setUserInfo();
             setCMDInfo();
+
+            configDial.setConfigured(user);
+            configDial.setPassword(user);
+            configDial.setType(user);
+            configDial.setRule(user);
+            configDial.setUserName(user);
             /* create a new thread */
             runRasdial_thread(runCmd);
         }
@@ -217,6 +223,7 @@ class runShellThread extends Thread{
         if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
             configDial.saveProps();
         }
+
         systemTray.remove(trayIcon);
     }
 }
