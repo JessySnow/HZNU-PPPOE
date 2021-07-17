@@ -1,5 +1,4 @@
 package dial.view;
-
 import dial.ConfigDial;
 import dial.model.Connection;
 import javafx.fxml.FXML;
@@ -8,7 +7,6 @@ import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
 import javafx.scene.control.TextField;
-
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
 
@@ -166,7 +164,6 @@ public class InterfaceController {
         showUserInfo();
     }
 }
-
 /**
  * create a new thread to execute
  * a rasdial command and show notification
