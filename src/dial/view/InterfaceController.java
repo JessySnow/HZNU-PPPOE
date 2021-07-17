@@ -176,6 +176,7 @@ class runShellThread extends Thread{
     private RunCmd runCmd;
     private Connection connection;
     private ConfigDial configDial;
+
     SystemTray systemTray;
     TrayIcon trayIcon;
 
@@ -207,14 +208,12 @@ class runShellThread extends Thread{
         }
     }
 
+    /**
+     * wait console to return a dial result
+     */
     @Override
     public void run() {
         runCmd.runRasdial();
-        try{
-            this.join();
-        }catch(InterruptedException e){
-            System.out.println(3);
-        }
         setConnectionInfo();
         showAwtNotification();
     }
