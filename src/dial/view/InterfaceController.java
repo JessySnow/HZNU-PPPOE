@@ -217,7 +217,9 @@ class runShellThread extends Thread{
         showAwtNotification();
 
         /* if dial success try to write config to disk */
-
+        if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
+            configDial.saveProps();
+        }
         systemTray.remove(trayIcon);
     }
 }
