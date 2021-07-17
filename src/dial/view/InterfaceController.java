@@ -187,7 +187,6 @@ class runShellThread extends Thread{
     }
 
     private void showAwtNotification(){
-        System.out.println("H");
         systemTray = SystemTray.getSystemTray();
         try{
             Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
@@ -216,5 +215,9 @@ class runShellThread extends Thread{
         runCmd.runRasdial();
         setConnectionInfo();
         showAwtNotification();
+
+        /* if dial success try to write config to disk */
+
+        systemTray.remove(trayIcon);
     }
 }
