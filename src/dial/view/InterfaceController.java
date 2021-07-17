@@ -26,9 +26,6 @@ public class InterfaceController {
     @FXML
     private RadioButton CUC;
 
-    private SystemTray systemTray;
-    private TrayIcon trayIcon;
-
     private Main main;
     Thread cmdThread;
     private User user;
@@ -36,43 +33,18 @@ public class InterfaceController {
     public static Connection connection;
     private ConfigDial configDial;
 
-
     /**
-     * pop notification
+     * default empty constructor
      * */
-    private void showAwtNotification(){
-        systemTray = SystemTray.getSystemTray();
-        try{
-            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
-            trayIcon = new TrayIcon(notiImage, "Status");
-            trayIcon.setImageAutoSize(true);
-            systemTray.add(trayIcon);
-            trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
-        }catch (AWTException e){
-            System.exit(-2);
-        }
-    }
-
-    /**
-     * create a new thread to show notification
-     */
-    private void showNotification_thread(){
-        Thread notiThread = new notiThread();
-        notiThread.start();
-    }
+    public InterfaceController(){}
 
     /**
      * create a new thread to execute rasdial command in cmd
-     * @return
      */
     private void runRasdial_thread(RunCmd runCmd){
         cmdThread = new runShellThread(runCmd, connection, configDial);
         cmdThread.start();
     }
-    /**
-     * default empty constructor
-     * */
-    public InterfaceController(){}
 
     /* judge if all blank is filled */
     private boolean isFilled(){
@@ -163,13 +135,14 @@ public class InterfaceController {
     }
 
     /**
-     * try to dial
+     * function of dial button
      * */
     @FXML
     private void handleDial(){
         if(isFilled() && isSelected()){
             setUserInfo();
             setCMDInfo();
+            /* create a new thread */
             runRasdial_thread(runCmd);
         }
     }
@@ -193,34 +166,11 @@ public class InterfaceController {
         showUserInfo();
     }
 }
-/**
- * create a noti_thread class extend thread to show
- * notification from the connection status
- */
-class notiThread extends Thread{
-    String notification = null;
-    private SystemTray systemTray;
-    private TrayIcon trayIcon;
-    @Override
-    public void run(){
-        this.notification = InterfaceController.connection.getStatus().getStatusInfo();
-        systemTray = SystemTray.getSystemTray();
-        try{
-            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
-            trayIcon = new TrayIcon(notiImage, "Status");
-            trayIcon.setImageAutoSize(true);
-            systemTray.add(trayIcon);
-            trayIcon.displayMessage("连接状态", notification, MessageType.INFO);
-        }catch (AWTException e){
-            System.exit(-2);
-        }finally {
-            systemTray.remove(trayIcon);
-        }
-    }
-}
+
 /**
  * create a new thread to execute
- * a rasdial command
+ * a rasdial command and show notification
+ * on it's main thread
  */
 class runShellThread extends Thread{
     private RunCmd runCmd;
