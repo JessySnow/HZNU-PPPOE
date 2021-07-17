@@ -224,6 +224,9 @@ class runShellThread extends Thread{
             configDial.saveProps();
         }
 
+        /* test */
+//        configDial.saveProps();
+
         systemTray.remove(trayIcon);
     }
 }
