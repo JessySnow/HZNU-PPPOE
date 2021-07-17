@@ -30,6 +30,7 @@ public class InterfaceController {
     private TrayIcon trayIcon;
 
     private Main main;
+    Thread cmdThread;
     private User user;
     private RunCmd runCmd;
     public static Connection connection;
@@ -65,7 +66,7 @@ public class InterfaceController {
      * @return
      */
     private void runRasdial_thread(RunCmd runCmd){
-        Thread cmdThread = new runShellThread(runCmd);
+        cmdThread = new runShellThread(runCmd, connection, configDial);
         cmdThread.start();
     }
     /**
@@ -170,9 +171,6 @@ public class InterfaceController {
             setUserInfo();
             setCMDInfo();
             runRasdial_thread(runCmd);
-//            setConnectionInfo();
-//            showNotification_thread();
-//            showAwtNotification();
         }
     }
 
@@ -195,7 +193,6 @@ public class InterfaceController {
         showUserInfo();
     }
 }
-
 /**
  * create a noti_thread class extend thread to show
  * notification from the connection status
@@ -227,16 +224,48 @@ class notiThread extends Thread{
  */
 class runShellThread extends Thread{
     private RunCmd runCmd;
-    public runShellThread(RunCmd runCmd){
+    private Connection connection;
+    private ConfigDial configDial;
+    SystemTray systemTray;
+    TrayIcon trayIcon;
+
+    public runShellThread(RunCmd runCmd, Connection connection, ConfigDial configDial){
         this.runCmd = runCmd;
+        this.connection = connection;
+        this.configDial = configDial;
+    }
+
+    private void showAwtNotification(){
+        System.out.println("H");
+        systemTray = SystemTray.getSystemTray();
+        try{
+            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
+            trayIcon = new TrayIcon(notiImage, "Status");
+            trayIcon.setImageAutoSize(true);
+            systemTray.add(trayIcon);
+            trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
+        }catch (AWTException e){
+            System.exit(-2);
+        }
+    }
+
+    private void setConnectionInfo(){
+        connection = new Connection();
+        connection.setStatus(runCmd.getStatus());
+        if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
+            configDial.saveProps();
+        }
     }
 
     @Override
     public void run() {
         runCmd.runRasdial();
-    }
-
-    public RunCmd getRunCmd() {
-        return runCmd;
+        try{
+            this.join();
+        }catch(InterruptedException e){
+            System.out.println(3);
+        }
+        setConnectionInfo();
+        showAwtNotification();
     }
 }
