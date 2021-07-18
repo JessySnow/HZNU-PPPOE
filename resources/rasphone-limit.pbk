@@ -1,0 +1,4 @@
+[PPPOE]
+MEDIA=rastapi
+Port=PPPoE5-0
+DEVICE=PPPoE
