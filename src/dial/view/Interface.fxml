@@ -7,9 +7,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="510.0" styleClass="background" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dial.view.InterfaceController">
    <children>
 
-      <ImageView fx:id="ZeroTwo" fitHeight="340.0" fitWidth="531.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../../resources/images/ZeroTwo.png" />
-      </ImageView>
+      <ImageView fx:id="ZeroTwo" fitHeight="340.0" fitWidth="531.0" pickOnBounds="true" preserveRatio="true"> </ImageView>
 
       <Button fx:id="Login" layoutX="361.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleDial" prefHeight="25.0" prefWidth="100.0" text="登录" />
       <Label layoutX="174.0" layoutY="132.0" text="学号" />
@@ -17,7 +15,7 @@
       <TextField fx:id="userName" layoutX="224.0" layoutY="125.0" prefHeight="36.0" prefWidth="237.0" />
       <TextField fx:id="passWord" layoutX="224.0" layoutY="204.0" prefHeight="36.0" prefWidth="237.0" />
       <Label layoutX="41.0" layoutY="264.0" text="选择运营商" />
-      <Label layoutX="189.0" layoutY="28.0" styleClass="label-header" stylesheets="@Theme.css" text="HZNU-Dial" />
+      <Label layoutX="242.0" layoutY="31.0" styleClass="label-header" stylesheets="@Theme.css" text="HZNU-Dial" />
       <RadioButton fx:id="CTC" layoutX="41.0" layoutY="301.0" mnemonicParsing="false" text="电信" />
       <RadioButton fx:id="CMC" layoutX="146.0" layoutY="301.0" mnemonicParsing="false" text="移动" />
       <RadioButton fx:id="CUC" layoutX="258.0" layoutY="301.0" mnemonicParsing="false" text="联通" />

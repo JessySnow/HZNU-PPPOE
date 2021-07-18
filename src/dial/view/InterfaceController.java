@@ -34,7 +34,6 @@ public class InterfaceController {
     Thread cmdThread;
     private User user;
     private RunCmd runCmd;
-    public static Connection connection;
     private ConfigDial configDial;
 
     /**
@@ -45,12 +44,10 @@ public class InterfaceController {
     /**
      * create a new thread to execute rasdial command in cmd
      */
-    private void runRasdial_thread(RunCmd runCmd){
-        cmdThread = new runShellThread(runCmd, connection, configDial);
+    private void runRasdial_thread(RunCmd runCmd, ConfigDial configDial){
+        cmdThread = new runShellThread(runCmd, configDial);
         cmdThread.start();
     }
-
-
 
     /* judge if all blank is filled */
     private boolean isFilled(){
@@ -82,13 +79,11 @@ public class InterfaceController {
     public void setMain(Main main){
         this.main = main;
     }
-
     /**
      * show info of user in text_field and check_box if application is configured before
      * */
-    @FXML
     private void showUserInfo(){
-        if(!user.getUserName().equals("null") && !user.getPassWord().equals("null") && user.getType() != 3){
+        if(user.getConfigured().equals("true")){
             this.userName.setText(user.getUserName());
             this.passWord.setText(user.getPassWord());
             switch (user.getType()){
@@ -102,11 +97,10 @@ public class InterfaceController {
                     this.CUC.setSelected(true);
                     break;
                 default:
-                    System.exit(1);
+                    ;
             }
         }
     }
-
     /**
      * set user's info if user click the Login button
      * but not write the info to props util the dial is
@@ -116,30 +110,26 @@ public class InterfaceController {
         user.setUserName(userName.getText());
         user.setPassWord(passWord.getText());
         user.setType(getType());
+        user.setConfigured("true");
     }
-    private void setCMDInfo(){
+    private void Init_CMD(){
         runCmd = new RunCmd(user);
     }
-    private void setConnectionInfo(){
-        connection = new Connection();
-        connection.setStatus(runCmd.getStatus());
-        if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
-            configDial.saveProps();
-        }
-    }
+    /**
+     * load configure from hard disk
+     */
     private void initConfig(){
         configDial = new ConfigDial();
         configDial.loadProps();
     }
     /**
-     * get user's info from config file
+     * get user's info from config object
      */
     private void loadUserInfo(){
         user.setUserName(configDial.getUserName());
         user.setPassWord(configDial.getPassWord());
         user.setType(configDial.getType());
     }
-    
     private void showMyWife(){
         try {
             javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\ZeroTwo.png");
@@ -153,28 +143,25 @@ public class InterfaceController {
     /**
      * function of dial button
      * */
-    @FXML
     private void handleDial(){
         if(isFilled() && isSelected()){
             setUserInfo();
-            setCMDInfo();
-
+            Init_CMD();
             configDial.setConfigured(user);
             configDial.setPassword(user);
             configDial.setType(user);
             configDial.setRule(user);
             configDial.setUserName(user);
-            /* create a new thread */
-            runRasdial_thread(runCmd);
+            runRasdial_thread(runCmd, configDial);
         }
     }
 
     /**
-     * Initializes the controller class and all object needed.
+     * initializes the controller class and all object needed.
+     * if there is no pbk file in c disk, then create one
      * This method is automatically called
      * after the fxml file has been loaded
      */
-    @FXML
     private  void initialize(){
         user = new User();
         ISP = new ToggleGroup();
@@ -183,32 +170,38 @@ public class InterfaceController {
         CUC.setToggleGroup(ISP);
 
         showMyWife();
-        initConfig();
         handleDial();
+
+        initConfig();
         loadUserInfo();
         showUserInfo();
+
         WritePBK.writingPbk();
     }
 }
+
 /**
  * create a new thread to execute
  * a rasdial command and show notification
  * on it's main thread
  */
 class runShellThread extends Thread{
-    private RunCmd runCmd;
+    private final RunCmd runCmd;
     private Connection connection;
-    private ConfigDial configDial;
+    private final ConfigDial configDial;
 
     SystemTray systemTray;
     TrayIcon trayIcon;
 
-    public runShellThread(RunCmd runCmd, Connection connection, ConfigDial configDial){
+    public runShellThread(RunCmd runCmd, ConfigDial configDial){
         this.runCmd = runCmd;
-        this.connection = connection;
         this.configDial = configDial;
     }
 
+    /**
+     * show status of pppoe connection through
+     * java awt notification
+     */
     private void showAwtNotification(){
         systemTray = SystemTray.getSystemTray();
         try{
@@ -225,11 +218,8 @@ class runShellThread extends Thread{
     private void setConnectionInfo(){
         connection = new Connection();
         connection.setStatus(runCmd.getStatus());
-        if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
-            configDial.saveProps();
-        }
-    }
 
+    }
     /**
      * wait console to return a dial result
      */
@@ -237,13 +227,10 @@ class runShellThread extends Thread{
     public void run() {
         runCmd.runRasdial();
         setConnectionInfo();
-        showAwtNotification();
-
-        /* if dial success try to write config to disk */
         if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
             configDial.saveProps();
         }
-
+        showAwtNotification();
         systemTray.remove(trayIcon);
     }
 }
