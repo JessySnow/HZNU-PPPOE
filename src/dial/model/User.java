@@ -7,15 +7,7 @@ public class User {
     private String rule;
     private String configured;
 
-    /**
-     * default constructor
-     * */
-    public User(){
-        this.passWord = "000";
-        this.userName = "000";
-        this.rule = "@ctc";
-        this.configured = "false";
-    }
+    public User(){}
 
     /**
      * @param userName
