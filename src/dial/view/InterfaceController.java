@@ -2,12 +2,15 @@ package dial.view;
 import dial.ConfigDial;
 import dial.model.Connection;
 import javafx.fxml.FXML;
+import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+
+
 
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
@@ -25,8 +28,8 @@ public class InterfaceController {
     private RadioButton CTC;
     @FXML
     private RadioButton CUC;
-//    @FXML
-//    private ImageView ZeroTwo_View;
+    @FXML
+    private ImageView ZeroTwo;
 
     private Main main;
     Thread cmdThread;
@@ -137,13 +140,16 @@ public class InterfaceController {
         user.setPassWord(configDial.getPassWord());
         user.setType(configDial.getType());
     }
-//    private void showMyWife(){
-//        javafx.scene.image.Image ZeroTwo = new javafx.scene.image.Image("file:C:\\Users\\jessy\\Pictures\\Saved Pictures\\People\\oTwo.png");
-//        ZeroTwo_View = new ImageView();
-//        ZeroTwo_View.setImage(ZeroTwo);
-//        ZeroTwo_View.setFitHeight(340);
-//        ZeroTwo_View.setFitWidth(531);
-//    }
+    
+    private void showMyWife(){
+        try {
+            javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\ZeroTwo.png");
+            ZeroTwo.setImage(image);
+            ZeroTwo.setCache(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * function of dial button
@@ -177,7 +183,7 @@ public class InterfaceController {
         CTC.setToggleGroup(ISP);
         CUC.setToggleGroup(ISP);
 
-//        showMyWife();
+        showMyWife();
         initConfig();
         handleDial();
         loadUserInfo();
