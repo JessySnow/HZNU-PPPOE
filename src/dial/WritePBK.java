@@ -14,7 +14,7 @@ public class WritePBK {
     //Move pbk to C
     private final static String windowsUser = System.getProperty("user.name");
     private final static String targetPath = "C:\\Users\\"+ windowsUser + "\\AppData\\Roaming\\Microsoft\\Network\\Connections\\Pbk\\rasphone.pbk";
-    private final static String connectionName = "[PPPOE2]";
+    private final static String connectionName = "[PPPOE]";
     private final static String MEDIA = "MEDIA=rastapi";
     private final static String Port = "Port=PPPoE5-0";
     private final static String Device = "DEVICE=PPPoE";

@@ -1,8 +1,9 @@
 package dial.view;
+
 import dial.ConfigDial;
 import dial.model.Connection;
 import javafx.fxml.FXML;
-import javafx.scene.SubScene;
+import dial.WritePBK;
 import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
@@ -188,6 +189,7 @@ public class InterfaceController {
         handleDial();
         loadUserInfo();
         showUserInfo();
+        if(configDial.getUserName().equals("null")) WritePBK.writingPbk();
     }
 }
 /**
