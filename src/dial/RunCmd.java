@@ -48,7 +48,7 @@ public class RunCmd extends Win_CMD{
             String result =  cmdReturn.toString();
 
             /* init the status by the error coed from console */
-            if (result.indexOf("Connected") > 0 || result.indexOf("已连接") > 0)    status.setStatusInfo("认证成功,已连接");
+            if (result.indexOf("connected") > 0 || result.indexOf("已连接") > 0)    status.setStatusInfo("认证成功,已连接");
             else if (result.indexOf("678") > 0)    status.setStatusInfo("无法连接到认证服务器_678");
             else if (result.indexOf("691") > 0)    status.setStatusInfo("用户名或者密码错误,请检查_691");
             else if (result.indexOf("619") > 0)    status.setStatusInfo("连接端口未打开,请检查网卡或入户网线接口_619");
