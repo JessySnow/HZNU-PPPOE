@@ -88,10 +88,10 @@ public class InterfaceController {
             this.passWord.setText(user.getPassWord());
             switch (user.getType()){
                 case 0:
-                    this.CMC.setSelected(true);
+                    this.CTC.setSelected(true);
                     break;
                 case 1:
-                    this.CTC.setSelected(true);
+                    this.CMC.setSelected(true);
                     break;
                 case 2:
                     this.CUC.setSelected(true);
@@ -128,6 +128,7 @@ public class InterfaceController {
     private void loadUserInfo(){
         user.setUserName(configDial.getUserName());
         user.setPassWord(configDial.getPassWord());
+        user.setConfigured(configDial.getConfigured());
         user.setType(configDial.getType());
     }
     private void showMyWife(){

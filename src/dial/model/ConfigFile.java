@@ -24,7 +24,7 @@ public class ConfigFile {
     public int getType(){
         return Integer.parseInt(props.getProperty("type"));
     }
-
+    public String getConfigured(){return props.getProperty("Configured");}
     /**
      * load properties file from disk to memory(ram)
      * */
