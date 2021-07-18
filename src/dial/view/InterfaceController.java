@@ -11,8 +11,6 @@ import dial.RunCmd;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-
-
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
 
@@ -189,7 +187,7 @@ public class InterfaceController {
         handleDial();
         loadUserInfo();
         showUserInfo();
-        if(configDial.getUserName().equals("null")) WritePBK.writingPbk();
+        WritePBK.writingPbk();
     }
 }
 /**
