@@ -1,6 +1,7 @@
 package dial;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -16,6 +17,7 @@ public class WritePBK {
     //Move pbk to C
     private final static String windowsUser = System.getProperty("user.name");
     private final static String targetPath = "C:\\Users\\"+ windowsUser + "\\AppData\\Roaming\\Microsoft\\Network\\Connections\\Pbk\\rasphone.pbk";
+    private final static String sourcePath = "resources\\rasphone-limit.pbk";
     private final static String connectionName = "[PPPOE]";
     private final static String MEDIA = "MEDIA=rastapi";
     private final static String Port = "Port=PPPoE5-0";
@@ -66,10 +68,17 @@ public class WritePBK {
         createPbk();
         if(!scanPbk()){
             try{
-                Files.write(Paths.get(targetPath), ("\n" + connectionName + "\n").getBytes(), StandardOpenOption.APPEND);
-                Files.write(Paths.get(targetPath), (MEDIA + "\n").getBytes(), StandardOpenOption.APPEND);
-                Files.write(Paths.get(targetPath), (Port + "\n").getBytes(), StandardOpenOption.APPEND);
-                Files.write(Paths.get(targetPath), (Device + "\n").getBytes(), StandardOpenOption.APPEND);
+                File file = new File(sourcePath);
+                InputStreamReader read = new InputStreamReader(
+                        new FileInputStream(file));
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String line = null;
+                while ((line = bufferedReader.readLine()) != null){
+                    Files.write(Paths.get(targetPath), (line + '\n').getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                }
+
+                bufferedReader.close();
+                read.close();
             }catch (IOException e){
                 System.exit(4);
             }
