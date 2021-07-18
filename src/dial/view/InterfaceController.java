@@ -143,6 +143,7 @@ public class InterfaceController {
     /**
      * function of dial button
      * */
+    @FXML
     private void handleDial(){
         if(isFilled() && isSelected()){
             setUserInfo();
@@ -162,6 +163,7 @@ public class InterfaceController {
      * This method is automatically called
      * after the fxml file has been loaded
      */
+    @FXML
     private  void initialize(){
         user = new User();
         ISP = new ToggleGroup();
