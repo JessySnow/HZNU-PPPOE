@@ -18,10 +18,6 @@ public class WritePBK {
     private final static String windowsUser = System.getProperty("user.name");
     private final static String targetPath = "C:\\Users\\"+ windowsUser + "\\AppData\\Roaming\\Microsoft\\Network\\Connections\\Pbk\\rasphone.pbk";
     private final static String sourcePath = "resources\\rasphone-limit.pbk";
-    private final static String connectionName = "[PPPOE]";
-    private final static String MEDIA = "MEDIA=rastapi";
-    private final static String Port = "Port=PPPoE5-0";
-    private final static String Device = "DEVICE=PPPoE";
 
     /**
      * only write 'PPPOE' to pbk file
@@ -64,6 +60,9 @@ public class WritePBK {
         }
     }
 
+    /**
+     * copy from resource/rasphone-limit.pbk
+     */
     public static void writingPbk(){
         createPbk();
         if(!scanPbk()){
@@ -76,16 +75,11 @@ public class WritePBK {
                 while ((line = bufferedReader.readLine()) != null){
                     Files.write(Paths.get(targetPath), (line + '\n').getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
                 }
-
                 bufferedReader.close();
                 read.close();
             }catch (IOException e){
                 System.exit(4);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        writingPbk();
     }
 }

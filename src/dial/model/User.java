@@ -34,10 +34,6 @@ public class User {
         this.type = type;
     }
 
-    public void setConfigured(String configured) {
-        this.configured = configured;
-    }
-
     public String getPassWord() {
         return passWord;
     }
