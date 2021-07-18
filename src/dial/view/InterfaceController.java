@@ -7,6 +7,8 @@ import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
 
@@ -23,6 +25,8 @@ public class InterfaceController {
     private RadioButton CTC;
     @FXML
     private RadioButton CUC;
+//    @FXML
+//    private ImageView ZeroTwo_View;
 
     private Main main;
     Thread cmdThread;
@@ -43,6 +47,8 @@ public class InterfaceController {
         cmdThread = new runShellThread(runCmd, connection, configDial);
         cmdThread.start();
     }
+
+
 
     /* judge if all blank is filled */
     private boolean isFilled(){
@@ -131,6 +137,13 @@ public class InterfaceController {
         user.setPassWord(configDial.getPassWord());
         user.setType(configDial.getType());
     }
+//    private void showMyWife(){
+//        javafx.scene.image.Image ZeroTwo = new javafx.scene.image.Image("file:C:\\Users\\jessy\\Pictures\\Saved Pictures\\People\\oTwo.png");
+//        ZeroTwo_View = new ImageView();
+//        ZeroTwo_View.setImage(ZeroTwo);
+//        ZeroTwo_View.setFitHeight(340);
+//        ZeroTwo_View.setFitWidth(531);
+//    }
 
     /**
      * function of dial button
@@ -164,6 +177,7 @@ public class InterfaceController {
         CTC.setToggleGroup(ISP);
         CUC.setToggleGroup(ISP);
 
+//        showMyWife();
         initConfig();
         handleDial();
         loadUserInfo();
@@ -223,9 +237,6 @@ class runShellThread extends Thread{
         if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
             configDial.saveProps();
         }
-
-        /* test */
-//        configDial.saveProps();
 
         systemTray.remove(trayIcon);
     }
