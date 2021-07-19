@@ -5,8 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
 
 /***
  * writing pppoe config to pbk file if exists
@@ -21,16 +19,15 @@ public class WritePBK {
 
     /**
      * only write 'PPPOE' to pbk file
-     * if threr is no 'PPPOE' connection name on it
+     * if there is no 'PPPOE' connection name on it
      */
     private static boolean scanPbk(){
-        List<String> list = new ArrayList<String>();
         try{
             File file = new File(targetPath);
             InputStreamReader read = new InputStreamReader(
                     new FileInputStream(file));
             BufferedReader bufferedReader = new BufferedReader(read);
-            String line = null;
+            String line;
             while ((line = bufferedReader.readLine()) != null){
                 if(line.equals("[PPPOE]")){
                     return  true;
@@ -54,7 +51,7 @@ public class WritePBK {
         if(!file.exists()){
             try{
                 file.createNewFile();
-            }catch (Exception e){
+            }catch (IOException e){
                 System.exit(5);
             }
         }
@@ -71,7 +68,7 @@ public class WritePBK {
                 InputStreamReader read = new InputStreamReader(
                         new FileInputStream(file));
                 BufferedReader bufferedReader = new BufferedReader(read);
-                String line = null;
+                String line;
                 while ((line = bufferedReader.readLine()) != null){
                     Files.write(Paths.get(targetPath), (line + '\n').getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
                 }

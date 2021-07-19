@@ -7,14 +7,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class RunCmd extends Win_CMD{
-    /**
-     * init a run-cmd object with an user
-     * @param user
-     * */
+
     public RunCmd(User user){
         super(user);
 
-        /* get rule by user type */
+        /* get rule by user's type */
         switch (user.getType()){
             case (0):
                 user.setRule("@ctc");

@@ -9,20 +9,12 @@ import java.io.IOException;
 
 public class ConfigDial extends ConfigFile{
 
-    /**
-     * init props object of farther class
-     * set userDir and filepath of properties
-     */
     public ConfigDial(){
         super();
         userDir = System.getProperty("user.dir");
         filePath = userDir + "\\config.properties";
     }
 
-    /**
-     * load properties from disk to memory(ram)
-     * write properties to disk to memory(ram)
-     */
     @Override
     public void loadProps(){
         try{

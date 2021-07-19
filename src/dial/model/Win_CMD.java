@@ -5,10 +5,6 @@ public class Win_CMD {
     protected Status status;
     protected String CMD;
 
-    public Win_CMD(){
-        user = new User();
-        status = new Status();
-    }
     public Win_CMD(User user){
         this.user = user;
         this.status = new Status();
