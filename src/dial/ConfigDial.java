@@ -61,11 +61,4 @@ public class ConfigDial extends ConfigFile{
     public void setType(User user){
         props.setProperty("type", String.valueOf(user.getType()));
     }
-    @Override
-    public void config_An_User(User user){
-        setUserName(user);
-        setPassword(user);
-        setConfigured(user);
-        setType(user);
-    }
 }
