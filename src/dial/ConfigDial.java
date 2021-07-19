@@ -62,22 +62,6 @@ public class ConfigDial extends ConfigFile{
         props.setProperty("type", String.valueOf(user.getType()));
     }
     @Override
-    public void setRule(User user){
-        switch (user.getType()){
-            case (0):
-                user.setRule("@ctc");
-                break;
-            case (1):
-                user.setRule("@cmcc");
-                break;
-            case(2):
-                user.setRule("@cuc");
-                break;
-            default:
-                user.setRule("@xxx");
-        }
-    }
-    @Override
     public void config_An_User(User user){
         setUserName(user);
         setPassword(user);

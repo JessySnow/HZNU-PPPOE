@@ -152,7 +152,6 @@ public class InterfaceController {
             configDial.setConfigured(user);
             configDial.setPassword(user);
             configDial.setType(user);
-            configDial.setRule(user);
             configDial.setUserName(user);
             runRasdial_thread(runCmd, configDial);
         }
