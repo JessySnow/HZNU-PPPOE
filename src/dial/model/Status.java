@@ -10,7 +10,6 @@ public class Status {
     public void setStatusInfo(String statusInfo) {
         this.statusInfo = statusInfo;
     }
-
     public String getStatusInfo() {
         return statusInfo;
     }
