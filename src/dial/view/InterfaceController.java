@@ -90,7 +90,6 @@ public class InterfaceController {
                     this.CUC.setSelected(true);
                     break;
                 default:
-                    ;
             }
         }
     }
@@ -126,9 +125,6 @@ public class InterfaceController {
         runCmd.setUser(user);
     }
 
-    /**
-     * function of dial button
-     * */
     @FXML
     private void handleDial(){
         if(isFilled() && isSelected()){

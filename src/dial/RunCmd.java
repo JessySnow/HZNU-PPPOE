@@ -39,7 +39,6 @@ public class RunCmd extends Win_CMD{
     public void runRasdial(){
         switchType();
         CMD = (String.format("rasdial PPPOE %s%s %s", user.getUserName(), user.getRule(), user.getPassWord()));
-        System.out.println(CMD);
         try {
             Process Windows_CMD = Runtime.getRuntime().exec("cmd /c " + CMD);
             String Line;
