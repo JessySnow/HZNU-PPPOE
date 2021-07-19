@@ -72,16 +72,9 @@ public class InterfaceController {
             return 2;
         }
     }
-
-    /**
-     * get main from Main.java
-     * */
     public void setMain(Main main){
         this.main = main;
     }
-    /**
-     * show info of user in text_field and check_box if application is configured before
-     * */
     private void showUserInfo(){
         if(user.getConfigured().equals("true")){
             this.userName.setText(user.getUserName());
@@ -101,11 +94,6 @@ public class InterfaceController {
             }
         }
     }
-    /**
-     * set user's info if user click the Login button
-     * but not write the info to props util the dial is
-     * success
-     * */
     private void setUserInfo(){
         user.setUserName(userName.getText());
         user.setPassWord(passWord.getText());
@@ -115,16 +103,10 @@ public class InterfaceController {
     private void Init_CMD(){
         runCmd = new RunCmd(user);
     }
-    /**
-     * load configure from hard disk
-     */
     private void initConfig(){
         configDial = new ConfigDial();
         configDial.loadProps();
     }
-    /**
-     * get user's info from config object
-     */
     private void loadUserInfo(){
         user.setUserName(configDial.getUserName());
         user.setPassWord(configDial.getPassWord());
@@ -140,6 +122,9 @@ public class InterfaceController {
             e.printStackTrace();
         }
     }
+    private void setCMDUser(){
+        runCmd.setUser(user);
+    }
 
     /**
      * function of dial button
@@ -148,11 +133,11 @@ public class InterfaceController {
     private void handleDial(){
         if(isFilled() && isSelected()){
             setUserInfo();
-            Init_CMD();
             configDial.setConfigured(user);
             configDial.setPassword(user);
             configDial.setType(user);
             configDial.setUserName(user);
+            setCMDUser();
             runRasdial_thread(runCmd, configDial);
         }
     }
@@ -174,6 +159,7 @@ public class InterfaceController {
         showMyWife();
         handleDial();
 
+        Init_CMD();
         initConfig();
         loadUserInfo();
         showUserInfo();

@@ -10,8 +10,11 @@ public class RunCmd extends Win_CMD{
 
     public RunCmd(User user){
         super(user);
+        switchType();
+        CMD = (String.format("rasdial PPPOE %s%s %s", user.getUserName(), user.getRule(), user.getPassWord()));
+    }
 
-        /* get rule by user's type */
+    private void switchType(){
         switch (user.getType()){
             case (0):
                 user.setRule("@ctc");
@@ -25,7 +28,6 @@ public class RunCmd extends Win_CMD{
             default:
                 user.setRule("@xxx");
         }
-        CMD = (String.format("rasdial PPPOE %s%s %s", user.getUserName(), user.getRule(), user.getPassWord()));
     }
 
     /**
@@ -35,6 +37,9 @@ public class RunCmd extends Win_CMD{
      */
     @Override
     public void runRasdial(){
+        switchType();
+        CMD = (String.format("rasdial PPPOE %s%s %s", user.getUserName(), user.getRule(), user.getPassWord()));
+        System.out.println(CMD);
         try {
             Process Windows_CMD = Runtime.getRuntime().exec("cmd /c " + CMD);
             String Line;
