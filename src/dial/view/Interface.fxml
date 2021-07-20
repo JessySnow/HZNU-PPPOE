@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="510.0" styleClass="background" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dial.view.InterfaceController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="510.0" styleClass="background" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dial.view.InterfaceController">
    <children>
 
       <ImageView fx:id="ZeroTwo" fitHeight="340.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true"> </ImageView>
@@ -22,6 +25,6 @@
 
       <!-- use label to control pane -->
       <Label fx:id="HeaderLabel" contentDisplay="RIGHT" layoutY="-6.0" prefHeight="33.0" prefWidth="510.0" stylesheets="@Theme.css" />
-      <ImageView fx:id="Win_close" fitHeight="21.0" fitWidth="20.0" layoutX="486.0" layoutY="4.0" onMouseClicked="#Win_close_handler" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Win_close" fitHeight="21.0" fitWidth="20.0" layoutX="486.0" layoutY="4.0" onMouseClicked="#Win_close_handler" onMouseExited="#Win_close_out_handler" onMouseMoved="#Win_close_hover_handler" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

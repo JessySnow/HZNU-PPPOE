@@ -50,13 +50,9 @@ public class InterfaceController {
 
 
     private void Win_close_show(){
-        try {
-            javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
-            Win_close.setImage(image);
-            Win_close.setCache(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+        Win_close.setImage(image);
+        Win_close.setCache(true);
     }
 
     @FXML
@@ -64,7 +60,18 @@ public class InterfaceController {
         Platform.exit();
     }
     @FXML
-    private void Win_Drag(){}
+    private void Win_close_hover_handler(){
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\ZeroTwo.png");
+        Win_close.setImage(image);
+    }
+    @FXML
+    private void Win_close_out_handler(){
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+        Win_close.setImage(image);
+        Win_close.setCache(true);
+    }
+    @FXML
+    private void Win_Drag_handler(){}
 
     /**
      * create a new thread to execute rasdial command in cmd
