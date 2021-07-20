@@ -39,11 +39,11 @@ public class InterfaceController {
     private ImageView ZeroTwo;
 
     private Main main;
-    Thread cmdThread;
     private User user;
     private RunCmd runCmd;
     private ConfigDial configDial;
     private Stage primaryStage;
+    Thread cmdThread;
 
 
     /**
@@ -86,6 +86,8 @@ public class InterfaceController {
      */
     @FXML
     private void Win_Drag_handler(MouseEvent event){
+        setStagee();
+
         double x_offset = 0;
         double y_offset = 0;
 
@@ -138,7 +140,7 @@ public class InterfaceController {
         this.main = main;
     }
     private void setStagee(){
-        this.primaryStage = Main.getPrimaryStage();
+        this.primaryStage = main.getPrimaryStage();
     }
     private void showUserInfo(){
         if(user.getConfigured().equals("true")){
@@ -211,7 +213,6 @@ public class InterfaceController {
      */
     @FXML
     private  void initialize(){
-        setStagee();
         user = new User();
         ISP = new ToggleGroup();
         CMC.setToggleGroup(ISP);
