@@ -61,12 +61,18 @@ public class InterfaceController {
     }
     @FXML
     private void Win_close_hover_handler(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\ZeroTwo.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\red.png");
         Win_close.setImage(image);
     }
     @FXML
     private void Win_close_out_handler(){
         javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+        Win_close.setImage(image);
+        Win_close.setCache(true);
+    }
+    @FXML
+    private void Win_close_press_handler(){
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\grey.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
