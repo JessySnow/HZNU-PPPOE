@@ -2,12 +2,14 @@ package dial.view;
 
 import dial.ConfigDial;
 import dial.model.Connection;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import dial.WritePBK;
 import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -15,6 +17,10 @@ import java.awt.*;
 import java.awt.TrayIcon.MessageType;
 
 public class InterfaceController {
+    @FXML
+    public Label HeaderLabel;
+    @FXML
+    public ImageView Win_close;
     @FXML
     private ToggleGroup ISP;
     @FXML
@@ -36,10 +42,29 @@ public class InterfaceController {
     private RunCmd runCmd;
     private ConfigDial configDial;
 
+
     /**
      * default empty constructor
      * */
     public InterfaceController(){}
+
+
+    private void Win_close_show(){
+        try {
+            javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+            Win_close.setImage(image);
+            Win_close.setCache(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void Win_close_handler(){
+        Platform.exit();
+    }
+    @FXML
+    private void Win_Drag(){}
 
     /**
      * create a new thread to execute rasdial command in cmd
@@ -153,6 +178,7 @@ public class InterfaceController {
         CUC.setToggleGroup(ISP);
 
         showMyWife();
+        Win_close_show();
         handleDial();
 
         Init_CMD();

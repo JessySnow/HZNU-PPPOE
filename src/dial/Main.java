@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 
 
 /* start javafx application */
@@ -33,6 +33,10 @@ public class Main extends Application {
          * */
         this.primaryStage.setTitle("HZNU-Dial");
         this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
+
+        /* set application UNDECORATED */
+        this.primaryStage.initStyle(StageStyle.UNDECORATED);
+        /* Create a label to take place */
         this.primaryStage.setResizable(false);
         initInterface();
     }
