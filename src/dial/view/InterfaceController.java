@@ -95,13 +95,10 @@ public class InterfaceController {
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
+            System.out.println(x_offset + " " +  y_offset);
         }else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
             primaryStage.setX(event.getSceneX()-x_offset);
-            if(event.getSceneY() - y_offset < 0){
-                primaryStage.setY(0);
-            }else {
-                primaryStage.setY(event.getY() - y_offset);
-            }
+            primaryStage.setY(event.getY() - y_offset);
         }
     }
 
