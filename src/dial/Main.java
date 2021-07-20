@@ -15,7 +15,7 @@ import javafx.stage.StageStyle;
 
 /* start javafx application */
 public class Main extends Application {
-    private Stage primaryStage;
+    private static Stage primaryStage;
     private Pane Interface;
 
     /**
@@ -73,7 +73,7 @@ public class Main extends Application {
     /**
      * Returns the main stage.
      */
-    public Stage getPrimaryStage() {
+    public static Stage getPrimaryStage() {
         return primaryStage;
     }
 

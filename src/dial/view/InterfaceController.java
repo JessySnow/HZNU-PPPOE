@@ -12,6 +12,8 @@ import dial.RunCmd;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.TrayIcon.MessageType;
@@ -41,6 +43,7 @@ public class InterfaceController {
     private User user;
     private RunCmd runCmd;
     private ConfigDial configDial;
+    private Stage primaryStage;
 
 
     /**
@@ -76,8 +79,29 @@ public class InterfaceController {
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
+
+    /**
+     * drag the header label to move the entire windows
+     * @param event
+     */
     @FXML
-    private void Win_Drag_handler(){}
+    private void Win_Drag_handler(MouseEvent event){
+        double x_offset = 0;
+        double y_offset = 0;
+
+        event.consume();
+        if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
+            x_offset = event.getSceneX();
+            y_offset = event.getSceneY();
+        }else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
+            primaryStage.setX(event.getSceneX()-x_offset);
+            if(event.getSceneY() - y_offset < 0){
+                primaryStage.setY(0);
+            }else {
+                primaryStage.setY(event.getY() - y_offset);
+            }
+        }
+    }
 
     /**
      * create a new thread to execute rasdial command in cmd
@@ -112,6 +136,9 @@ public class InterfaceController {
     }
     public void setMain(Main main){
         this.main = main;
+    }
+    private void setStagee(){
+        this.primaryStage = Main.getPrimaryStage();
     }
     private void showUserInfo(){
         if(user.getConfigured().equals("true")){
@@ -184,6 +211,7 @@ public class InterfaceController {
      */
     @FXML
     private  void initialize(){
+        setStagee();
         user = new User();
         ISP = new ToggleGroup();
         CMC.setToggleGroup(ISP);
