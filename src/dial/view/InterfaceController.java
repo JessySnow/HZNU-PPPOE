@@ -45,7 +45,6 @@ public class InterfaceController {
     private Stage primaryStage;
     Thread cmdThread;
 
-
     /**
      * default empty constructor
      * */
@@ -53,7 +52,7 @@ public class InterfaceController {
 
 
     private void Win_close_show(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-black.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
@@ -64,12 +63,12 @@ public class InterfaceController {
     }
     @FXML
     private void Win_close_hover_handler(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\red.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-red.png");
         Win_close.setImage(image);
     }
     @FXML
     private void Win_close_out_handler(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Exit.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-black.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
@@ -95,7 +94,6 @@ public class InterfaceController {
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
-            System.out.println(x_offset + " " +  y_offset);
         }else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
             primaryStage.setX(event.getSceneX()-x_offset);
             primaryStage.setY(event.getY() - y_offset);

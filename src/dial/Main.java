@@ -31,8 +31,7 @@ public class Main extends Application {
          * set icon of application
          * set application un resizable
          * */
-        this.primaryStage.setTitle("HZNU-Dial");
-        this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
+        this.primaryStage.getIcons().add(new Image("file:resources/images/PPPOE.png"));
 
         /* set application UNDECORATED */
         this.primaryStage.initStyle(StageStyle.UNDECORATED);
