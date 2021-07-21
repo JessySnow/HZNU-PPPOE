@@ -52,7 +52,7 @@ public class InterfaceController {
 
 
     private void Win_close_show(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-black.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-white.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
@@ -68,7 +68,7 @@ public class InterfaceController {
     }
     @FXML
     private void Win_close_out_handler(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-black.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-white.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
