@@ -6,6 +6,7 @@
     -fx-background-color: #808080;
 }
 
+
 .label {
     -fx-font-size: 11pt;
     -fx-text-fill: white;
@@ -16,6 +17,7 @@
     -fx-font-size: 11pt;
     -fx-text-fill: white;
     -fx-opacity: 1;
+    -fx-font-weight: bold;
 }
 
 .label-header {
@@ -26,6 +28,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
+    -fx-background-radius: 0px;
 }
 
 .radio-button{
@@ -75,4 +78,8 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
+}
+
+.text{
+    -fx-font-smoothing-type: gray;
 }

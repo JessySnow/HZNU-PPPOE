@@ -14,9 +14,9 @@
       <Label layoutX="174.0" layoutY="211.0" text="密码" />
       <TextField fx:id="userName" layoutX="224.0" layoutY="125.0" prefHeight="36.0" prefWidth="237.0" />
       <TextField fx:id="passWord" layoutX="224.0" layoutY="204.0" prefHeight="36.0" prefWidth="237.0" />
-      <Label layoutX="41.0" layoutY="264.0" text="选择运营商" />
+      <Label layoutX="41.0" layoutY="264.0" styleClass="label-bright" text="选择运营商" />
       <Label layoutX="242.0" layoutY="31.0" styleClass="label-header" stylesheets="@Theme.css" text="HZNU-Dial" />
-      <RadioButton fx:id="CTC" layoutX="41.0" layoutY="301.0" mnemonicParsing="false" text="电信" />
+      <RadioButton fx:id="CTC" layoutX="41.0"  layoutY="301.0" mnemonicParsing="false" text="电信" />
       <RadioButton fx:id="CMC" layoutX="146.0" layoutY="301.0" mnemonicParsing="false" text="移动" />
       <RadioButton fx:id="CUC" layoutX="258.0" layoutY="301.0" mnemonicParsing="false" text="联通" />
 
