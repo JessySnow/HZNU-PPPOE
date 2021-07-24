@@ -42,21 +42,18 @@ public class InterfaceController {
     private User user;
     private RunCmd runCmd;
     private ConfigDial configDial;
-    private Stage primaryStage;
+    private Stage primaryStage = null;
     Thread cmdThread;
 
     /**
      * default empty constructor
      * */
     public InterfaceController(){}
-
-
     private void Win_close_show(){
         javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\close-white.png");
         Win_close.setImage(image);
         Win_close.setCache(true);
     }
-
     @FXML
     private void Win_close_handler(){
         Platform.exit();
@@ -85,18 +82,24 @@ public class InterfaceController {
      */
     @FXML
     private void Win_Drag_handler(MouseEvent event){
-        setStagee();
+        if(this.primaryStage == null){
+            System.out.println("init stage.");
+            this.primaryStage = main.getPrimaryStage();
+        }
+        System.out.println("Now" + primaryStage.getY() + " " + primaryStage.getX());
 
         double x_offset = 0;
         double y_offset = 0;
-
+        double x_pos = 0;
+        double y_pos = 0;
         event.consume();
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
-        }else if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
-            primaryStage.setX(event.getSceneX()-x_offset);
-            primaryStage.setY(event.getY() - y_offset);
+        }
+        if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
+            primaryStage.setX(primaryStage.getX());
+            primaryStage.setY(primaryStage.getY());
         }
     }
 
@@ -133,9 +136,6 @@ public class InterfaceController {
     }
     public void setMain(Main main){
         this.main = main;
-    }
-    private void setStagee(){
-        this.primaryStage = main.getPrimaryStage();
     }
     private void showUserInfo(){
         if(user.getConfigured().equals("true")){
@@ -185,6 +185,9 @@ public class InterfaceController {
     }
     private void setCMDUser(){
         runCmd.setUser(user);
+    }
+    public void setStage(Stage primaryStage){
+        this.primaryStage = primaryStage;
     }
 
     @FXML
