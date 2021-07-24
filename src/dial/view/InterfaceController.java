@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import dial.Main;
 import dial.model.User;
 import dial.RunCmd;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,8 @@ public class InterfaceController {
     public Label HeaderLabel;
     @FXML
     public ImageView Win_close;
+    @FXML
+    protected Button Login;
     @FXML
     private ToggleGroup ISP;
     @FXML
@@ -78,7 +81,7 @@ public class InterfaceController {
 
     /**
      * drag the header label to move the entire windows
-     * @param event
+     * @param event: mouse event
      */
     @FXML
     private void Win_Drag_handler(MouseEvent event){
@@ -89,8 +92,6 @@ public class InterfaceController {
         double y_offset = 0;
         event.consume();
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
-//            x_offset = event.getScreenX();
-//            y_offset = event.getScreenY();
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
         }
@@ -187,9 +188,6 @@ public class InterfaceController {
     private void setCMDUser(){
         runCmd.setUser(user);
     }
-    public void setStage(Stage primaryStage){
-        this.primaryStage = primaryStage;
-    }
 
     @FXML
     private void handleDial(){
@@ -283,5 +281,6 @@ class runShellThread extends Thread{
         }
         showAwtNotification();
         systemTray.remove(trayIcon);
+
     }
 }
