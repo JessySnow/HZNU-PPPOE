@@ -83,23 +83,24 @@ public class InterfaceController {
     @FXML
     private void Win_Drag_handler(MouseEvent event){
         if(this.primaryStage == null){
-            System.out.println("init stage.");
             this.primaryStage = main.getPrimaryStage();
         }
-        System.out.println("Now" + primaryStage.getY() + " " + primaryStage.getX());
-
         double x_offset = 0;
         double y_offset = 0;
-        double x_pos = 0;
-        double y_pos = 0;
         event.consume();
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
+//            x_offset = event.getScreenX();
+//            y_offset = event.getScreenY();
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
         }
         if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
-            primaryStage.setX(primaryStage.getX());
-            primaryStage.setY(primaryStage.getY());
+            primaryStage.setX(event.getScreenX() - x_offset);
+            if(event.getScreenX() - y_offset < 0){
+                primaryStage.setY(0);
+            }else{
+                primaryStage.setY(event.getScreenY() - y_offset);
+            }
         }
     }
 
