@@ -31,7 +31,7 @@ public class Main extends Application {
          * set icon of application
          * set application un resizable
          * */
-        this.primaryStage.getIcons().add(new Image("file:resources/images/PPPOE.png"));
+        this.primaryStage.getIcons().add(new Image("file:resources/images/ApplicationIcon.png"));
 
         /* set application UNDECORATED */
         this.primaryStage.initStyle(StageStyle.UNDECORATED);

@@ -50,10 +50,10 @@ public class InterfaceController {
     private Stage primaryStage = null;
     Thread cmdThread;
 
-    private String ERRO_ICON_PATH = "file:resources\\images\\Error-White.png";
-    private String FAIL_ICON_PATH = "file:resources\\images\\Fail-White.png";
-    private String CONN_ICON_PATH = "file:resources\\images\\Connecting-White.png";
-    private String SUCC_ICON_PATH = "file:resources\\images\\Success-White.png";
+    private String ERRO_ICON_PATH = "file:resources\\images\\icons8-error-cloud-48.png";
+    private String FAIL_ICON_PATH = "file:resources\\images\\icons8-fail-cloud-48.png";
+    private String CONN_ICON_PATH = "file:resources\\images\\icons8-cloud-connection-48.png";
+    private String SUCC_ICON_PATH = "file:resources\\images\\icons8-cloud-checked-48.png";
 
 
     /**
@@ -61,8 +61,11 @@ public class InterfaceController {
      * this is a function called by timer
      */
     private void showStatus(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image(ERRO_ICON_PATH);
-        STATUS.setImage(image);
+        javafx.scene.image.Image errorImage = new javafx.scene.image.Image(ERRO_ICON_PATH);
+        javafx.scene.image.Image conntingImage = new javafx.scene.image.Image(CONN_ICON_PATH);
+        javafx.scene.image.Image failImage = new javafx.scene.image.Image(FAIL_ICON_PATH);
+        javafx.scene.image.Image successImage = new javafx.scene.image.Image(SUCC_ICON_PATH);
+        STATUS.setImage(failImage);
         STATUS.setCache(true);
     }
 
@@ -301,6 +304,5 @@ class runShellThread extends Thread{
         }
         showAwtNotification();
         systemTray.remove(trayIcon);
-
     }
 }
