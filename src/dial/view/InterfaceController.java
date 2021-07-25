@@ -21,11 +21,13 @@ import java.awt.TrayIcon.MessageType;
 
 public class InterfaceController {
     @FXML
-    public Label HeaderLabel;
+    protected Label HeaderLabel;
     @FXML
-    public ImageView Win_close;
+    protected ImageView Win_close;
     @FXML
     protected Button Login;
+    @FXML
+    private ImageView STATUS;
     @FXML
     private ToggleGroup ISP;
     @FXML
@@ -47,6 +49,16 @@ public class InterfaceController {
     private ConfigDial configDial;
     private Stage primaryStage = null;
     Thread cmdThread;
+
+
+    /**
+     * show status of connection
+     */
+    private void showStatus(){
+        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Ethnet.png");
+        STATUS.setImage(image);
+        STATUS.setCache(true);
+    }
 
     /**
      * default empty constructor
@@ -217,6 +229,8 @@ public class InterfaceController {
         CUC.setToggleGroup(ISP);
 
         showMyWife();
+        showStatus();
+
         Win_close_show();
         handleDial();
 
