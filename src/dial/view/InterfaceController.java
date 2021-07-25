@@ -50,12 +50,18 @@ public class InterfaceController {
     private Stage primaryStage = null;
     Thread cmdThread;
 
+    private String ERRO_ICON_PATH = "file:resources\\images\\Error-White.png";
+    private String FAIL_ICON_PATH = "file:resources\\images\\Fail-White.png";
+    private String CONN_ICON_PATH = "file:resources\\images\\Connecting-White.png";
+    private String SUCC_ICON_PATH = "file:resources\\images\\Success-White.png";
+
 
     /**
      * show status of connection
+     * this is a function called by timer
      */
     private void showStatus(){
-        javafx.scene.image.Image image = new javafx.scene.image.Image("file:resources\\images\\Ethnet.png");
+        javafx.scene.image.Image image = new javafx.scene.image.Image(ERRO_ICON_PATH);
         STATUS.setImage(image);
         STATUS.setCache(true);
     }

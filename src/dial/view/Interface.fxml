@@ -26,6 +26,6 @@
       <!-- use label to control pane -->
       <Label fx:id="HeaderLabel" contentDisplay="RIGHT" layoutY="-6.0" onMouseDragged="#Win_Drag_handler" onMousePressed="#Win_Drag_handler" prefHeight="33.0" prefWidth="510.0" stylesheets="@Theme.css" />
       <ImageView fx:id="Win_close" fitHeight="18.0" fitWidth="18.0" layoutX="486.0" layoutY="5.0" onMouseClicked="#Win_close_handler" onMouseExited="#Win_close_out_handler" onMouseMoved="#Win_close_hover_handler" onMousePressed="#Win_close_press_handler" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="STATUS" fitHeight="24.0" fitWidth="24.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="STATUS" fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
