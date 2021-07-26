@@ -26,7 +26,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        /**
+        /*
          * set title of application
          * set icon of application
          * set application un resizable
@@ -49,13 +49,13 @@ public class Main extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/Interface.fxml"));
-            Interface = (Pane) loader.load();
+            Interface = loader.load();
 
             Scene scene = new Scene(Interface);
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            /**
+            /*
              *  Give the controller to the Main so that
              *  Main can get access of the controller on the pane
              *
