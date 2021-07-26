@@ -57,12 +57,6 @@ public class InterfaceController {
 
 
     /**
-     * Temp Code Zone
-     */
-    double x_offset = 0;
-    double y_offset = 0;
-
-    /**
      * show status of connection
      * this is a function called by timer
      */
@@ -107,6 +101,11 @@ public class InterfaceController {
     }
 
     /**
+     * Temp Code Zone
+     */
+    double x_offset = 0;
+    double y_offset = 0;
+    /**
      * drag the header label to move the entire windows
      * @param event: mouse event
      */
@@ -121,7 +120,6 @@ public class InterfaceController {
             y_offset = event.getSceneY();
         }
         if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
-            System.out.println(x_offset + " " + y_offset);
             primaryStage.setX(event.getScreenX() - x_offset);
             if(event.getScreenX() - y_offset < 0){
                 primaryStage.setY(0);
