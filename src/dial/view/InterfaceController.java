@@ -57,6 +57,12 @@ public class InterfaceController {
 
 
     /**
+     * Temp Code Zone
+     */
+    double x_offset = 0;
+    double y_offset = 0;
+
+    /**
      * show status of connection
      * this is a function called by timer
      */
@@ -109,14 +115,13 @@ public class InterfaceController {
         if(this.primaryStage == null){
             this.primaryStage = main.getPrimaryStage();
         }
-        double x_offset = 0;
-        double y_offset = 0;
         event.consume();
         if(event.getEventType() == MouseEvent.MOUSE_PRESSED){
             x_offset = event.getSceneX();
             y_offset = event.getSceneY();
         }
         if(event.getEventType() == MouseEvent.MOUSE_DRAGGED){
+            System.out.println(x_offset + " " + y_offset);
             primaryStage.setX(event.getScreenX() - x_offset);
             if(event.getScreenX() - y_offset < 0){
                 primaryStage.setY(0);
