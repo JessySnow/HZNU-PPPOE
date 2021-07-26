@@ -1,23 +1,5 @@
 package dial.view;
-
-import dial.ConfigDial;
-import dial.model.Connection;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import dial.WritePBK;
-import javafx.scene.control.*;
-import dial.Main;
-import dial.model.User;
-import dial.RunCmd;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.awt.*;
-import java.awt.TrayIcon.MessageType;
+import dial.ConfigDial;import dial.model.Connection;import javafx.application.Platform;import javafx.fxml.FXML;import dial.WritePBK;import javafx.scene.control.ToggleGroup;import dial.Main;import dial.model.User;import dial.RunCmd;import javafx.scene.control.Button;import javafx.scene.control.Label;import javafx.scene.control.TextField;import javafx.scene.control.RadioButton;import javafx.scene.image.ImageView;import javafx.scene.input.MouseEvent;import javafx.stage.Stage;import java.awt.TrayIcon;import java.awt.SystemTray;import java.awt.Toolkit;import java.awt.TrayIcon.MessageType;import java.awt.AWTException;import java.awt.Image;
 
 public class InterfaceController {
     @FXML
@@ -47,14 +29,27 @@ public class InterfaceController {
     private User user;
     private RunCmd runCmd;
     private ConfigDial configDial;
+    private Connection connection;
     private Stage primaryStage = null;
     Thread cmdThread;
+    private String connectionInfo = null;
 
     private String ERRO_ICON_PATH = "file:resources\\images\\icons8-error-cloud-48.png";
     private String FAIL_ICON_PATH = "file:resources\\images\\icons8-fail-cloud-48.png";
     private String CONN_ICON_PATH = "file:resources\\images\\icons8-cloud-connection-48.png";
     private String SUCC_ICON_PATH = "file:resources\\images\\icons8-cloud-checked-48.png";
+    double x_offset = 0;
+    double y_offset = 0;
 
+
+    /**
+     * track connection object's status info
+     * called by an timer
+     */
+    private void trackConnection(){
+        connectionInfo = connection.getStatus().getStatusInfo();
+        switch (connectionInfo){}
+    }
 
     /**
      * show status of connection
@@ -100,11 +95,6 @@ public class InterfaceController {
         Win_close.setCache(true);
     }
 
-    /**
-     * Temp Code Zone
-     */
-    double x_offset = 0;
-    double y_offset = 0;
     /**
      * drag the header label to move the entire windows
      * @param event: mouse event
@@ -280,11 +270,16 @@ class runShellThread extends Thread{
     private void showAwtNotification(){
         systemTray = SystemTray.getSystemTray();
         try{
-            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/Noti.png");
+            Image notiImage = Toolkit.getDefaultToolkit().createImage("resources/images/ApplicationIcon.png");
             trayIcon = new TrayIcon(notiImage, "Status");
             trayIcon.setImageAutoSize(true);
             systemTray.add(trayIcon);
-            trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
+            if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
+                trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.INFO);
+            }
+            else{
+                trayIcon.displayMessage("连接状态", connection.getStatus().getStatusInfo(), MessageType.WARNING);
+            }
         }catch (AWTException e){
             System.exit(-2);
         }
