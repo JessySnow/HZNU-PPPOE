@@ -1,5 +1,6 @@
 package dial.view;
-import dial.ConfigDial;import dial.model.Connection;import javafx.application.Platform;import javafx.fxml.FXML;import dial.WritePBK;import javafx.scene.control.ToggleGroup;import dial.Main;import dial.model.User;import dial.RunCmd;import javafx.scene.control.Button;import javafx.scene.control.Label;import javafx.scene.control.TextField;import javafx.scene.control.RadioButton;import javafx.scene.image.ImageView;import javafx.scene.input.MouseEvent;import javafx.stage.Stage;import java.awt.TrayIcon;import java.awt.SystemTray;import java.awt.Toolkit;import java.awt.TrayIcon.MessageType;import java.awt.AWTException;import java.awt.Image;
+import dial.ConfigDial;import dial.model.Connection;import javafx.application.Platform;import javafx.fxml.FXML;import dial.WritePBK;import javafx.scene.control.ToggleGroup;import dial.Main;import dial.model.User;import dial.RunCmd;import javafx.scene.control.Button;import javafx.scene.control.Label;import javafx.scene.control.TextField;import javafx.scene.control.RadioButton;import javafx.scene.image.ImageView;import javafx.scene.input.MouseEvent;import javafx.stage.Stage;import java.awt.TrayIcon;import java.awt.SystemTray;import java.awt.Toolkit;import java.awt.TrayIcon.MessageType;import java.awt.AWTException;import java.awt.Image;import java.util.Timer;
+import java.util.TimerTask;
 
 public class InterfaceController {
     @FXML
@@ -8,8 +9,6 @@ public class InterfaceController {
     protected ImageView Win_close;
     @FXML
     protected Button Login;
-    @FXML
-    private ImageView STATUS;
     @FXML
     private ToggleGroup ISP;
     @FXML
@@ -24,6 +23,9 @@ public class InterfaceController {
     private RadioButton CUC;
     @FXML
     private ImageView ZeroTwo;
+    @FXML
+    private ImageView STATUS;
+
 
     private Main main;
     private User user;
@@ -34,35 +36,10 @@ public class InterfaceController {
     Thread cmdThread;
     private String connectionInfo = null;
 
-    private String ERRO_ICON_PATH = "file:resources\\images\\icons8-error-cloud-48.png";
-    private String FAIL_ICON_PATH = "file:resources\\images\\icons8-fail-cloud-48.png";
-    private String CONN_ICON_PATH = "file:resources\\images\\icons8-cloud-connection-48.png";
-    private String SUCC_ICON_PATH = "file:resources\\images\\icons8-cloud-checked-48.png";
     double x_offset = 0;
     double y_offset = 0;
 
 
-    /**
-     * track connection object's status info
-     * called by an timer
-     */
-    private void trackConnection(){
-        connectionInfo = connection.getStatus().getStatusInfo();
-        switch (connectionInfo){}
-    }
-
-    /**
-     * show status of connection
-     * this is a function called by timer
-     */
-    private void showStatus(){
-        javafx.scene.image.Image errorImage = new javafx.scene.image.Image(ERRO_ICON_PATH);
-        javafx.scene.image.Image conntingImage = new javafx.scene.image.Image(CONN_ICON_PATH);
-        javafx.scene.image.Image failImage = new javafx.scene.image.Image(FAIL_ICON_PATH);
-        javafx.scene.image.Image successImage = new javafx.scene.image.Image(SUCC_ICON_PATH);
-        STATUS.setImage(failImage);
-        STATUS.setCache(true);
-    }
 
     /**
      * default empty constructor
@@ -123,7 +100,7 @@ public class InterfaceController {
      * create a new thread to execute rasdial command in cmd
      */
     private void runRasdial_thread(RunCmd runCmd, ConfigDial configDial){
-        cmdThread = new runShellThread(runCmd, configDial);
+        cmdThread = new runShellThread(runCmd, configDial, STATUS);
         cmdThread.start();
     }
 
@@ -231,7 +208,6 @@ public class InterfaceController {
         CUC.setToggleGroup(ISP);
 
         showMyWife();
-        showStatus();
 
         Win_close_show();
         handleDial();
@@ -251,6 +227,67 @@ public class InterfaceController {
  * on it's main thread
  */
 class runShellThread extends Thread{
+
+    @FXML
+    private ImageView STATUS;
+
+    private int switchTag = 0;
+
+
+    private String ERRO_ICON_PATH = "file:resources\\images\\icons8-error-cloud-48.png";
+    private String FAIL_ICON_PATH = "file:resources\\images\\icons8-fail-cloud-48.png";
+    private String CONN_ICON_PATH = "file:resources\\images\\icons8-cloud-connection-48.png";
+    private String SUCC_ICON_PATH = "file:resources\\images\\icons8-cloud-checked-48.png";
+    javafx.scene.image.Image errorImage = new javafx.scene.image.Image(ERRO_ICON_PATH);
+    javafx.scene.image.Image conntingImage = new javafx.scene.image.Image(CONN_ICON_PATH);
+    javafx.scene.image.Image failImage = new javafx.scene.image.Image(FAIL_ICON_PATH);
+    javafx.scene.image.Image successImage = new javafx.scene.image.Image(SUCC_ICON_PATH);
+    javafx.scene.image.Image targetImage;
+    Timer statusTimer = new Timer();
+
+
+    /**
+     * show status of connection
+     * this is a function called by timer
+     */
+    private void showStatus(){
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+//        if(this.connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
+//            targetImage = successImage;
+//        }else if(this.connection.getStatus().getStatusInfo().equals("发生了未知错误_-10")){
+//            targetImage = conntingImage;
+//        }else if(this.connection.getStatus() == null){
+//            targetImage = failImage;
+//        }
+//        if(switchTag++ % 2 == 0) {
+//            targetImage = failImage;
+//        }else {
+//            targetImage = conntingImage;
+//        }
+
+        if(this.connection == null){
+            targetImage = failImage;
+        }else if (!this.connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
+            this.targetImage = errorImage;
+        }else {
+            this.targetImage = successImage;
+        }
+
+
+        System.out.println(targetImage);
+        STATUS.setImage(targetImage);
+        STATUS.setCache(true);
+    }
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            showStatus();
+        }
+    };
+
+
+
+
     private final RunCmd runCmd;
     private Connection connection;
     private final ConfigDial configDial;
@@ -258,9 +295,10 @@ class runShellThread extends Thread{
     SystemTray systemTray;
     TrayIcon trayIcon;
 
-    public runShellThread(RunCmd runCmd, ConfigDial configDial){
+    public runShellThread(RunCmd runCmd, ConfigDial configDial, ImageView STATUS){
         this.runCmd = runCmd;
         this.configDial = configDial;
+        this.STATUS = STATUS;
     }
 
     /**
@@ -295,6 +333,7 @@ class runShellThread extends Thread{
      */
     @Override
     public void run() {
+        statusTimer.scheduleAtFixedRate(task, 0, 1000);
         runCmd.runRasdial();
         setConnectionInfo();
         if(connection.getStatus().getStatusInfo().equals("认证成功,已连接")){
